@@ -4,8 +4,8 @@
 	<title>{{$title}}</title>
 	{{Asset::container('bootstrapper')->styles()}}
 	{{Asset::container('bootstrapper')->scripts()}}
-	{{HTML::script('js/jquery.backstretch.min.js')}}
-	{{HTML::style('css/stylesheet.css')}}
+	{{HTML::script(URL::base().'/js/jquery.backstretch.min.js')}}
+	{{HTML::style(URL::base().'/css/stylesheet.css')}}
 	<script>
 		$(document).ready(function(){
 
@@ -14,7 +14,7 @@
 			},function(){
 				$(this).attr("class","icon-off");
 			});
-			$.backstretch("img/blurred-images.jpg");
+			$.backstretch("{{URL::base()}}/img/blurred-images.jpg");
 			$('.dropdown-toggle').dropdown();
 			$(".collapse").collapse();
 		});

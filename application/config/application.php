@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/laravel/public',
+	'url' => 'http://localhost/student_portal/public',
 
 	/*
 	|--------------------------------------------------------------------------

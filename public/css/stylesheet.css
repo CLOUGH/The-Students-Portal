@@ -105,3 +105,17 @@
 .news_date{
 	float: right;
 }
+#course_search_form
+{
+	margin-left: 4%;
+}
+.course_search_checkbox{
+	margin-right: 10px;
+}
+.course_search_checkbox input[type=checkbox]{
+	margin-right: 5px;
+}
+.accordion-toggle
+{
+	font-size: 16px;
+}

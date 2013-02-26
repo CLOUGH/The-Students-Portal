@@ -41,7 +41,11 @@ Route::get('/', function()
 	return View::make('home.index');
 });
 Route::get('student_profile', array('before'=>'auth','as'=>'student_profile', 'uses'=>'student@transcript'));
-Route::get('search_course', array('before'=>'auth','as'=>'search_course', 'uses'=>'course@search'));
+
+Route::get('search/search_course', array('before'=>'auth','as'=>'search_course', 'uses'=>'search@course_search'));
+Route::post('search/search_course', array('uses'=>'search@course_search'));
+Route::get('search/course_list', array('before'=>'auth','as'=>'course_list', 'uses'=>'search@course_list'));
+
 Route::get('academic_path', array('before'=>'auth','as'=>'generate_path', 'uses'=>'course@generate'));
 Route::get('register', array('before'=>'auth','as'=>'register', 'uses'=>'course@register'));
 Route::get('overrides', array('before'=>'auth','as'=>'course_override', 'uses'=>'course@override'));

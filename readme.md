@@ -1,67 +1,47 @@
-# [Laravel](http://laravel.com) - A PHP Framework For Web Artisans
+The-Student-Portal
+==================
+The student portal is a web based application that is an iterated version of the Online Student Advisory
+Portal (OSAP).The system was built for the Object Technology course at the University of The West Indies
+and is placed on github to collaborate with members of group. 
 
-Laravel is a clean and classy framework for PHP web development. Freeing you
-from spaghetti code, Laravel helps you create wonderful applications using
-simple, expressive syntax. Development should be a creative experience that you
-enjoy, not something that is painful. Enjoy the fresh air.
+The Problem
+===========
+Students after being enrolled in a University or College have a very difficult time adjusting to the university
+polices, making correct decisions and registering for courses. This problem normally set back students a year
+or two in the institution, which in turn waste student time, money and may contribute to a student dropping out. 
+The system normally in place require per to per communication which in most case is expensive and impractical due 
+to the amount of students normally enrolled in these institution.
+The problem can be addressed if there was a system that could assist students with the registration process, and 
+giving academic advice to students so that they can achieve their career goals. The Student Portal is that system.
+It will give student academic advice, registration tips and further assistance with a academic advisor if necessary.
 
-[Official Website & Documentation](http://laravel.com)
 
-## Feature Overview
 
-- Simple routing using Closures or controllers.
-- Views and templating.
-- Driver based session and cache handling.
-- Database abstraction with query builder.
-- Authentication.
-- Migrations.
-- PHPUnit Integration.
-- A lot more.
+System features:
+----------------
+**Student**
+* View User Profile
+* Edit User Profile
+* View Courses
+* Add Courses
+* Drop Courses
+* Request Overrides
+* View Messages
+* Send Messages
+* Get Course Selection Advisory
 
-## A Few Examples
+**Assistant**
+* View User Profile
+* Edit User Profile
+* View Course
+* Compare Courses
+* Search Student
+* View Messages
+* Send Messages
 
-### Hello World:
-
-```php
-<?php
-
-Route::get('/', function()
-{
-	return "Hello World!";
-});
-```
-
-### Passing Data To Views:
-
-```php
-<?php
-
-Route::get('user/(:num)', function($id)
-{
-	$user = DB::table('users')->find($id);
-
-	return View::make('profile')->with('user', $user);
-});
-```
-
-### Redirecting & Flashing Data To The Session:
-
-```php
-<?php
-
-return Redirect::to('profile')->with('message', 'Welcome Back!');
-```
-
-## Contributing to Laravel
-
-Contributions are encouraged and welcome; however, please review the Developer
-Certificate of Origin in the "license.txt" file included in the repository. All
-commits must be signed off using the `-s` switch.
-
-```bash
-git commit -s -m "this commit will be signed off automatically!"
-```
-
-## License
-
-Laravel is open-sourced software licensed under the MIT License.
+**Admin (New)**
+* Add course
+* Delete Course
+* Add Schedules
+* Edit Website configuration
+* Add Users
