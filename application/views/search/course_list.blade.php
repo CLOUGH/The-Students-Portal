@@ -8,9 +8,18 @@
 		<th>Title</th>
 		<th>Faculty</th>
 		<th>Credit</th>
-		<th>Simester</th>
+		<th>Semester</th>
 		<th>Level</th>
 	</tr>
-	</tr>
+	@foreach($courses as $course)
+		<tr>
+			<td>{{$course->code}}</td>
+			<td>{{$course->title}}</td>
+			<td>{{$course->faculty}}</td>
+			<td>{{$course->credit}}</td>
+			<td>{{$course->semester}}</td>
+			<td>{{$course->level}}</td>
+		</tr>
+	@endforeach
 </table>
 @endsection

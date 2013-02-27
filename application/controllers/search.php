@@ -23,21 +23,21 @@ class Search_Controller extends Base_Controller
 	}
 	public function post_course_search()
 	{
-		return Redirect::to_route("course_list");
-	}
-	public function get_course_list()
-	{
+
 		$this->make_active("student_advisory");
 		return View::make("search.course_list")
 			->with('title','Search Result')
 			->with('active_navigation',$this->acitve_navigation)
 			->with('user_type', Auth::user()->type)
-			->with('user_first_name', Auth::user()->first_name);
+			->with('user_first_name', Auth::user()->first_name)
+			->with('courses',Search::search_course(array()));
+	}
+	public function get_course_list()
+	{
+
 	}
 	private function make_active($key){
-
-		$current_navigation = $this->acitve_navigation;
-		
+		$current_navigation = $this->acitve_navigation;		
 		unset($current_navigation['website']);
 		$currently_active = array_search("active",$current_navigation);
 		$this->acitve_navigation[$currently_active] = "inactive";
