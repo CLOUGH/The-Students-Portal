@@ -11,15 +11,17 @@
 		<th>Semester</th>
 		<th>Level</th>
 	</tr>
-	@foreach($courses as $course)
-		<tr>
-			<td>{{$course->code}}</td>
-			<td>{{$course->title}}</td>
-			<td>{{$course->faculty}}</td>
-			<td>{{$course->credit}}</td>
-			<td>{{$course->semester}}</td>
-			<td>{{$course->level}}</td>
-		</tr>
-	@endforeach
+	@if(count($courses)!=0)
+		@foreach($courses as $course)
+			<tr>
+				<td>{{$course->code}}</td>
+				<td>{{$course->title}}</td>
+				<td>{{$course->faculty}}</td>
+				<td>{{$course->credit}}</td>
+				<td>{{$course->semester}}</td>
+				<td>{{$course->level}}</td>
+			</tr>
+		@endforeach
+	@endif
 </table>
 @endsection

@@ -10,7 +10,7 @@
 			{{Form::text("course_name")}}
 
 			{{Form::label("course_code", "Course Code")}}
-			{{Form::text("course_name")}}
+			{{Form::text("course_code")}}
 
 			{{Form::label("subject", "Subject")}}
 			{{Form::text("subject")}}
@@ -20,8 +20,8 @@
 		</div>
 		<div class="span6">
 			{{Form::label("credit_range", "Credit Range")}}
-			{{Form::text("credi_range_min",'',array('class'=>'span2'))}}to
-			{{Form::text("credi_range_max",'',array('class'=>'span2'))}}
+			{{Form::text("credit_range_min",'',array('class'=>'span2'))}}to
+			{{Form::text("credit_range_max",'',array('class'=>'span2'))}}
 
 			{{Form::label("faculty", "Faculty")}}
 			{{Form::select("faculty",$faculties)}}
