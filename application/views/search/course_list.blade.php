@@ -13,7 +13,7 @@
 	</tr>
 	@if(count($courses)!=0)
 		@foreach($courses as $course)
-			<tr>
+			<tr class="search_list_row" onclick="redirect('{{URL::to_route('course_detail').'/'.$course->id}}')">
 				<td>{{$course->code}}</td>
 				<td>{{$course->title}}</td>
 				<td>{{$course->faculty}}</td>

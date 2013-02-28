@@ -6,7 +6,7 @@
 			if(count($args)==0)
 			{
 				$courses = DB::table('courses')->join('faculties','courses.faculty_id','=','faculties.id')
-						->get(array('courses.code','courses.title', 'courses.level',
+						->get(array('courses.id','courses.code','courses.title', 'courses.level',
 							'courses.semester','faculties.name as faculty','courses.credit'));
 				return $courses;
 			}else if(!$is_detailed_search)
@@ -25,10 +25,20 @@
 				if($args['semester']!='all')
 					$sql = $sql->where('semester','=',"$args[semester]");
 
-				$courses = $sql->get(array('courses.code','courses.title', 'courses.level',
+				$courses = $sql->get(array('courses.id','courses.code','courses.title', 'courses.level',
 							'courses.semester','faculties.name as faculty','courses.credit'));
 				return $courses;
 			}
+		}
+		public static function get_course_detail($id)
+		{
+			$sql = DB::table('courses')->join('faculties','courses.faculty_id','=','faculties.id')
+						->where('courses.id', '=', $id);
+
+			$course_detail = $sql->first(array('courses.id','courses.code','courses.title', 'courses.level',
+							'courses.semester','faculties.name as faculty','courses.credit','courses.description'));
+			return $course_detail;
+			
 		}
 	}
 ?>

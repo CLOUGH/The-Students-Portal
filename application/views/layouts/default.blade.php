@@ -5,6 +5,7 @@
 	{{Asset::container('bootstrapper')->styles()}}
 	{{Asset::container('bootstrapper')->scripts()}}
 	{{HTML::script(URL::base().'/js/jquery.backstretch.min.js')}}
+	{{HTML::script(URL::base().'/js/main.js')}}
 	{{HTML::style(URL::base().'/css/stylesheet.css')}}
 	<script>
 		$(document).ready(function(){
@@ -35,7 +36,7 @@
 								{{HTML::link_to_route('home', 'Dashboard',array('role'=>'button'))}}
 							</li>
 							<li>
-								<a href="logout">
+								<a href="{{URL::to_route('logout')}}">
 								<i id="admin-logout-icon" class="icon-off"></i></a>
 							</li>
 						</ul>
@@ -85,7 +86,7 @@
 								</a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 									<li><a tabindex="-1" href="#">Messages</a></li>
-									<li><a id="logout-link" tabindex="-1" href="logout">
+									<li><a id="logout-link" tabindex="-1" href="{{URL::to_route('logout')}}">
 											Logout
 											<i class="icon-off"></i>
 										</a>

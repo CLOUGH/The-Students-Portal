@@ -38,6 +38,17 @@ class Search_Controller extends Base_Controller
 	{
 		return Redirect::to_route("course_search");
 	}
+	public function get_course_detail($id)
+	{
+		$course_detail = Search::get_course_detail($id);
+		return View::make("search.course_details")
+			->with('title','Course Detials')
+			->with('active_navigation',$this->acitve_navigation)
+			->with('user_type', Auth::user()->type)
+			->with('user_first_name', Auth::user()->first_name)
+			->with('course_detail',$course_detail);
+
+	}
 	private function make_active($key){
 		$current_navigation = $this->acitve_navigation;		
 		unset($current_navigation['website']);

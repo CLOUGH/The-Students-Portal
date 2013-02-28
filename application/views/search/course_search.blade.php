@@ -69,6 +69,6 @@
       	</div>
       	</div>
 
-      	{{Form::submit("Search")}}
+      	{{Form::submit("Search",array('class'=>'submit'))}}
 	{{Form::close()}}
 @endsection
