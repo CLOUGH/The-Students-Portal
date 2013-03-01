@@ -37,8 +37,26 @@
 
 			$course_detail = $sql->first(array('courses.id','courses.code','courses.title', 'courses.level',
 							'courses.semester','faculties.name as faculty','courses.credit','courses.description'));
+		
 			return $course_detail;
 			
+		}
+		public static function get_pre_requisites($course_id)
+		{
+		
+			return DB::table('pre_requisites')->join('courses','pre_requisites.required_course_id','=','courses.id')
+											->where('pre_requisites.course_id','=',$course_id)
+											->get(array('courses.id as course_id','courses.code','courses.title'));
+		}
+		public static function get_course_schedules($course_id)
+		{
+			return DB::table('schedules')->join('schedule_types','schedule_types.id','=','schedules.schedule_type_id')
+							->join('lecture_rooms','lecture_rooms.id','=','schedules.room_id')
+							->where('schedules.course_id','=',$course_id)
+							->get(array('schedule_types.name as type', 'lecture_rooms.initials as room_initial',
+										'lecture_rooms.name as room_name', 'lecture_rooms.description as room_description',
+										'schedules.crn', 'schedules.max_capacity','schedules.start_time','schedules.end_time',
+										'schedules.day'));
 		}
 	}
 ?>

@@ -38,7 +38,7 @@
 }
 .post {
 
-	width:90%;
+	
 	margin-bottom: 10px;
 	margin-left: auto;
 	margin-right: auto;
@@ -95,19 +95,20 @@
 }
 .page_heading
 {
-	margin-left: 4%;
 	margin-bottom: 5%;	
 }
 .application-heading
 {
+
 	margin-left: 3%;
+
 }
 .news_date{
 	float: right;
 }
 #course_search_form
 {
-	margin-left: 4%;
+
 }
 .course_search_checkbox{
 	margin-right: 10px;
@@ -118,4 +119,14 @@
 .accordion-toggle
 {
 	font-size: 16px;
+}
+#course_description
+{
+	margin-top: -25px;
+	width: 60%;
+	margin-bottom: 35px;
+}
+.main_contents{
+	padding-left: 3%;
+	padding-right: 3%;
 }

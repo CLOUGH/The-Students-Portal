@@ -46,7 +46,9 @@ class Search_Controller extends Base_Controller
 			->with('active_navigation',$this->acitve_navigation)
 			->with('user_type', Auth::user()->type)
 			->with('user_first_name', Auth::user()->first_name)
-			->with('course_detail',$course_detail);
+			->with('course_detail',$course_detail)
+			->with('pre_requisites',Search::get_pre_requisites($id))
+			->with('schedules', Search::get_course_schedules($id));
 
 	}
 	private function make_active($key){

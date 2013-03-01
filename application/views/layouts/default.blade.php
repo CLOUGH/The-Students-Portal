@@ -100,7 +100,8 @@
 			</nav>
 		@endif
 	
-
+	<div class="main_contents">
 	@yield('content')
+	</div>
 </body>
 </html>

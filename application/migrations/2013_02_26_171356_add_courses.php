@@ -19,7 +19,13 @@ class Add_Courses {
 			'semester'=>'2',
 			'level'=>'2',
 			'credit'=>'3',
-			'description'=>'',
+			'description'=>'Net Centric computing covers a wide range of sub-specialities including: 
+							computer communication network concepts andprotocols, mobile and wireless 
+							computing, and distributed systems. The Net-Centric Computing course also 
+							exposes students to important aspects of secure systems development including 
+							cryptography, intrusion detection and malware detection. Finally, this course 
+							will introduce students to Web technologies including: basic server-side and 
+							client-side scripts.',
 			'created_at'=>date('Y-m-d H:m:s'),
 			'updated_at'=>date('Y-m-d H:m:s')
 			));
@@ -32,7 +38,14 @@ class Add_Courses {
 			'semester'=>'2',
 			'level'=>'2',
 			'credit'=>'3',
-			'description'=>'',
+			'description'=>'This is a core course in the BSc Computer Science curriculum. It is the updated 
+							version of CS20A. Its primary focus is on the method of assessing time complexity 
+							of an algorithm, and on several algorithms that efficiently solve common problems 
+							across a wide range of domains. Hand in hand with the discussion of these algorithms, 
+							goes a discussion of the data structures that support them. Therefore each topic in this 
+							course is usually presented as a family of problems, the types of algorithmic solutions 
+							available, the necessary data structures to support them, and analyses of the tradeoffs 
+							involved with using each of these solutions.',
 			'created_at'=>date('Y-m-d H:m:s'),
 			'updated_at'=>date('Y-m-d H:m:s')
 			));	
