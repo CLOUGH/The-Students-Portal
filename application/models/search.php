@@ -62,6 +62,15 @@
 		{
 			return DB::table('registration_requirements')->where('course_id','=',$course_id)->first();
 		}
+		public static function army_to_normal_time($time)
+		{
+			
+			list($hour,$min,$sec) = preg_split('/[:]/',$time);
+			if(intval($hour)>=12)
+				return intval(intval($hour)==12?$hour:intval($hour)-12).':'.$min." PM";
+			else
+				return intval(intval($hour)==0?12:$hour).':'.$min." AM";
+		}
 
 	}
 ?>
