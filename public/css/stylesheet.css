@@ -130,3 +130,7 @@
 	padding-left: 3%;
 	padding-right: 3%;
 }
+.tooltip.in {
+  opacity: 1;
+  filter: alpha(opacity=1);
+}

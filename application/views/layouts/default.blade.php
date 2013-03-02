@@ -18,6 +18,7 @@
 			$.backstretch("{{URL::base()}}/img/blurred-images.jpg");
 			$('.dropdown-toggle').dropdown();
 			$(".collapse").collapse();
+			$("[data-toggle='tooltip']").tooltip();
 		});
 	</script>
 </head>

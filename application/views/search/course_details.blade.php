@@ -14,16 +14,34 @@
 				<li>None</li>
 		@endif
 	</ul>
-
+	<h5>Registration Requirements</h5>
+	
+	@if(isset($registration_requirement))
+		<ul>
+			@if($registration_requirement->lectures>0)
+				<li>{{$registration_requirement->lectures}} Lectures</li>
+			@endif
+			@if($registration_requirement->tutorials>0)
+				<li>{{$registration_requirement->tutorials}} Tutorials</li>
+			@endif
+			@if($registration_requirement->labs>0)
+				<li>{{$registration_requirement->labs}} Labs</li>
+			@endif
+			@if($registration_requirement->seminar>0)
+				<li>{{$registration_requirement->seminar}} Seminars</li>
+			@endif		
+		</ul>
+	@endif
+	
 	<h5>Schedules</h5>
 	<table class="table table-striped table-hover">
 		<tr>
-			<td>Type</td>
-			<td>Time</td>
-			<td>Day</td>
-			<td>Room</td>
-			<td>Lecturers</td>
-			<td>Register</td>
+			<th>Type</th>
+			<th>Time</th>
+			<th>Day</th>
+			<th>Room</th>
+			<th>Lecturers</th>
+			<th>Register</th>
 		</tr>
 		@if(count($schedules)>0)			
 			@foreach($schedules as $schedule)
@@ -31,14 +49,14 @@
 						<td>{{$schedule->type}}</td>
 						<td>{{$schedule->start_time.' - '.$schedule->end_time}}</td>
 						<td>{{$schedule->day}}</td>
-						<td data-toggle='tooltip' title="{{$schedule->room_name}}">{{$schedule->room_initial}}</td>
+						<td ><span data-toggle='tooltip' title="{{$schedule->room_name}}">{{$schedule->room_initial}}</span></td>
 						<td>Lecturers</td>
 						<td>{{Form::checkbox('register')}}</td>
 					</tr>
 			@endforeach
 		@else
-			<tr colspan="6">
-				<td>Empty</td>
+			<tr>
+				<td colspan="6">Empty</td>
 			</tr>
 		@endif
 	</table>

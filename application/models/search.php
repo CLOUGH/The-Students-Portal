@@ -58,5 +58,10 @@
 										'schedules.crn', 'schedules.max_capacity','schedules.start_time','schedules.end_time',
 										'schedules.day'));
 		}
+		public static function get_registration_requirements($course_id)
+		{
+			return DB::table('registration_requirements')->where('course_id','=',$course_id)->first();
+		}
+
 	}
 ?>

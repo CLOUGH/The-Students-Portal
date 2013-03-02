@@ -48,7 +48,8 @@ class Search_Controller extends Base_Controller
 			->with('user_first_name', Auth::user()->first_name)
 			->with('course_detail',$course_detail)
 			->with('pre_requisites',Search::get_pre_requisites($id))
-			->with('schedules', Search::get_course_schedules($id));
+			->with('schedules', Search::get_course_schedules($id))
+			->with('registration_requirement',Search::get_registration_requirements($id));
 
 	}
 	private function make_active($key){
