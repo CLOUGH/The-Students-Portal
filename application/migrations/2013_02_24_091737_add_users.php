@@ -31,6 +31,17 @@ class Add_Users {
 				'created_at'=>date('Y-m-d H:m:s'),
 				'updated_at'=>date('Y-m-d H:m:s')
 			));
+		DB::table('users')->insert(array(
+				'first_name'=> 'Shane',
+				'last_name'=> 'Campbell',
+				'username'=> 'shane',
+				'password'=>Hash::make('pass1234'),
+				'type'=> '1',
+				'email'=>'shanec132006@hotmail.com',
+				'is_main'=>'0',
+				'created_at'=>date('Y-m-d H:m:s'),
+				'updated_at'=>date('Y-m-d H:m:s')
+			));
 	}
 
 	/**
