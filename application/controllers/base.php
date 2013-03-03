@@ -17,6 +17,7 @@ class Base_Controller extends Controller {
 		'view_student_profile'=>'inactive',
 		'student_advisory'=>'inactive',
 		'register'=>'inactive',
+		'academic_consultation'=>'inactive'
 	);
 	public function __call($method, $parameters)
 	{

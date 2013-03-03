@@ -59,12 +59,23 @@
 							<li class="{{$active_navigation['home']}}" </li>
 								{{HTML::link_to_route('home', 'Home',array('role'=>'button'))}}
 							</li>
-							<li class="dropdown {{$active_navigation['view_student_profile']}}">
+							@if(Auth::user()->type == '3' || Auth::user()->type =='1')
+							<li class="dropdown {{$active_navigation['academic_consultation']}}">
+								<a class="dropdown-toggle" data-toggle="dropdown"  role="button" href="#">Academic Consultation</a>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+									<li>{{HTML::link_to_route('search_student', 'Search for Student',array('tabindex'=>'-1' ))}}</li>
+								</ul>
+							</li>
+							@endif
+							@if(Auth::user()->type =='1'|| Auth::user()->type=='2')
+								<li class="dropdown {{$active_navigation['view_student_profile']}}">
 								<a class="dropdown-toggle" data-toggle="dropdown"  role="button" href="#">Profile Management</a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 									<li>{{HTML::link_to_route('student_profile', 'View Student Profile',array('tabindex'=>'-1' ))}}</li>
 								</ul>
-							</li>
+							</li>								
+							@endif
+							
 							<li class="dropdown {{$active_navigation['student_advisory']}} ?>">
 								<a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">Course Advisory</a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" >

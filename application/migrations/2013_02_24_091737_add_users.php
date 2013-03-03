@@ -42,6 +42,17 @@ class Add_Users {
 				'created_at'=>date('Y-m-d H:m:s'),
 				'updated_at'=>date('Y-m-d H:m:s')
 			));
+		DB::table('users')->insert(array(
+				'first_name'=> 'Kerry-Ann',
+				'last_name'=> 'Malcomb',
+				'username'=> 'kerry',
+				'password'=>Hash::make('pass1234'),
+				'type'=> '3',
+				'email'=>'kerry@hotmail.com',
+				'is_main'=>'0',
+				'created_at'=>date('Y-m-d H:m:s'),
+				'updated_at'=>date('Y-m-d H:m:s')
+			));
 	}
 
 	/**
@@ -54,6 +65,7 @@ class Add_Users {
 		DB::table('users')->where('username', '=', 'clough')->delete();
 		DB::table('users')->where('username', '=', 'cloughax')->delete();
 		DB::table('users')->where('username', '=', 'shane')->delete();
+		DB::table('users')->where('username', '=', 'kerry')->delete();
 	}
 
 }
