@@ -53,6 +53,7 @@ class Add_Users {
 	{
 		DB::table('users')->where('username', '=', 'clough')->delete();
 		DB::table('users')->where('username', '=', 'cloughax')->delete();
+		DB::table('users')->where('username', '=', 'shane')->delete();
 	}
 
 }

@@ -70,9 +70,9 @@ return array(
 		'mysql' => array(
 			'driver'   => 'mysql',
 			'host'     => '127.0.0.1',
-			'database' => 'laravel',
+			'database' => 'student_portal2',
 			'username' => 'root',
-			'password' => 'gtx@6075',
+			'password' => '',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 		),
