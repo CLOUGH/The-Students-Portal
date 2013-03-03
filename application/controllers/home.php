@@ -36,18 +36,10 @@ class Home_Controller extends Base_Controller {
 	}
 	public function get_index()
 	{
-		$acitve_navigation = array(
-				'dashboard'=>'inactive',
-				'website'=>'active',
-				'home'=>'active',
-				'view_student_profile'=>'inactive',
-				'student_advisory'=>'inactive',
-				'register'=>'inactive',
-			);
-		
+		parent::make_active("home");
 		return View::make('home.index')
 			->with('title','Home')
-			->with('active_navigation',$acitve_navigation)
+			->with('active_navigation',parent::$acitve_navigation)
 			->with('user_type', Auth::user()->type)
 			->with('user_first_name', Auth::user()->first_name)
 			->with('news_list', News::order_by('updated_at')->get());

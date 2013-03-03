@@ -30,6 +30,14 @@
 				return $courses;
 			}
 		}
+		public static function encode_url($var)
+		{
+			return urlencode(base64_encode($var.'~'));
+		}
+		public static function decode_url($url)
+		{
+			return substr(base64_decode($url),0, strrpos(base64_decode($url),'~',-1) );
+		}
 		
 
 	}

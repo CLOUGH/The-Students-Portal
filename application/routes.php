@@ -44,7 +44,8 @@ Route::get('student_profile', array('before'=>'auth','as'=>'student_profile', 'u
 
 Route::get('search/search_course', array('before'=>'auth','as'=>'search_course', 'uses'=>'search@course_search'));
 Route::post('search/search_course', array('uses'=>'search@course_search'));
-Route::get('search/course_list', array('before'=>'auth','as'=>'course_list', 'uses'=>'search@course_list'));
+								
+Route::get('search/course_list/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)', array('uses'=>'search@course_list'));
 
 Route::get('course/comments/(:any)',array('before'=>'auth', 'as'=>'comments', 'uses'=>'comments@course_comments'));
 Route::get('course/course_detail/(:any)',array('before'=>'auth', 'as'=>'course_detail', 'uses'=>'course@course_detail'));
