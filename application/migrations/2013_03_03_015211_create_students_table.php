@@ -11,8 +11,9 @@ class Create_Students_Table {
 	{
 		Schema::create('students',function($table){
 			$table->increments('id');
-			$table->interger('student_id');
-		})
+			$table->integer('student_id');
+			$table->timestamps();
+		});
 	}
 
 	/**

@@ -1,6 +1,6 @@
 <?php
 
-class Create_Registered_Courses_Table_Php {
+class Create_Registered_Courses_Table {
 
 	/**
 	 * Make changes to the database.
@@ -13,7 +13,7 @@ class Create_Registered_Courses_Table_Php {
 			$table->increments('id');
 			$table->integer('student_id');
 			$table->integer('course_id');
-			$table->timestamp();
+			$table->timestamps();
 		});
 	}
 
@@ -24,7 +24,7 @@ class Create_Registered_Courses_Table_Php {
 	 */
 	public function down()
 	{
-		Schema::drop('registered_course');
+		Schema::drop('registered_courses');
 	}
 
 }
