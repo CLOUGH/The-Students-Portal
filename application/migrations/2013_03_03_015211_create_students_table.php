@@ -11,7 +11,10 @@ class Create_Students_Table {
 	{
 		Schema::create('students',function($table){
 			$table->increments('id');
-			$table->integer('student_id');
+			$table->integer('student_id')->unique();
+			$table->integer('faculty');
+			$table->integer('associated_hall');
+			$table->integer('type');
 			$table->timestamps();
 		});
 	}

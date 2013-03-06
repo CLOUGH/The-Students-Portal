@@ -60,7 +60,7 @@
 								{{HTML::link_to_route('home', 'Home',array('role'=>'button'))}}
 							</li>
 							@if(Auth::user()->type == '3' || Auth::user()->type =='1')
-							<li class="dropdown {{$active_navigation['academic_consultation']}}">
+							<li class="dropdown {{$active_navigation['academic_advisor']}}">
 								<a class="dropdown-toggle" data-toggle="dropdown"  role="button" href="#">Academic Consultation</a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 									<li>{{HTML::link_to_route('search_student', 'Search for Student',array('tabindex'=>'-1' ))}}</li>

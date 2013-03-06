@@ -36,6 +36,10 @@
 	float:right;
 	margin-right: 50px;
 }
+.active>a, .inactive>a
+{
+	border-radius: 3px;
+}
 .post {
 
 	

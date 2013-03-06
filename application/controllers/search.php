@@ -4,7 +4,7 @@ class Search_Controller extends Base_Controller
 
 	public function get_course_search(){
 		
-		parent::make_active("student_advisory");		
+		parent::make_active("academic_advisor");		
 		return View::make("search.course_search")
 			->with('title','Search Course')
 			->with('active_navigation',parent::$acitve_navigation)

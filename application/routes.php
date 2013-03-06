@@ -44,6 +44,9 @@ Route::get('student_profile', array('before'=>'auth','as'=>'student_profile', 'u
 
 //Academic Advisor Routing
 Route::get('academic_advisor/search_student', array('before'=>'auth','as'=>'search_student', 'uses'=>'academic_advisor@search_student'));
+Route::get('academic_advisor/student_list', array('before'=>'auth','as'=>'student_list', 'uses'=>'academic_advisor@student_list'));
+Route::post('academic_advisor/search_student', array('before'=>'auth','uses'=>'academic_advisor@search_student'));
+
 
 //Search Routing
 Route::get('search/search_course', array('before'=>'auth','as'=>'search_course', 'uses'=>'search@course_search'));
