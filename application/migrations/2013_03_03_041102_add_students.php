@@ -15,6 +15,7 @@ class Add_Students {
 			'faculty_id'=>'1',
 			'associated_hall'=>'Chancellor',
 			'student_type_id'=>'1',
+			'major'=>'Computer Science',
 			'created_at'=>date('Y-m-d H:m:s'),
 			'updated_at'=>date('Y-m-d H:m:s')
 		));
