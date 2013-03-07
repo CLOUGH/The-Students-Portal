@@ -28,8 +28,8 @@ class Add_Student_Types {
 	 */
 	public function down()
 	{
-		DB::table('student_types')->find('1')->delete();
-		DB::table('student_types')->find('2')->delete();
+		DB::table('student_types')->where('id','=','1')->delete();
+		DB::table('student_types')->where('id','=','2')->delete();
 	}
 
 }

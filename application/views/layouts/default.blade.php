@@ -6,6 +6,7 @@
 	{{Asset::container('bootstrapper')->scripts()}}
 	{{HTML::script(URL::base().'/js/jquery.backstretch.min.js')}}
 	{{HTML::script(URL::base().'/js/main.js')}}
+	{{HTML::script(URL::base().'/js/jquery.transit.js')}}
 	{{HTML::style(URL::base().'/css/stylesheet.css')}}
 	<script>
 		$(document).ready(function(){

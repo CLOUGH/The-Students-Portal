@@ -27,7 +27,7 @@ class Add_Students {
 	 */
 	public function down()
 	{
-		DB::table('students')->find('1')->delete();
+		DB::table('students')->where('id','=','1')->delete();
 	}
 
 }

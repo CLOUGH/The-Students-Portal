@@ -13,7 +13,7 @@ class Student_Controller extends Base_Controller {
 			->with('user_type', Auth::user()->type)
 			->with('user_first_name', Auth::user()->first_name)
 			->with('faculties', Faculty::get_dropdown())
-    		->with('student', Student::with('user','student.faculty','student.studenttype','student.courses')->find($id));
+    		->with('student', Student::with('user','student.faculty','student.studenttype','student.courses','student.schedules')->find($id));
     }
 
 }

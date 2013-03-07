@@ -17,4 +17,12 @@ $(document).ready(function(){
 		e.preventDefault();
 		$(this).tab('show');
 	})
+	$('.toggle_course_scehdule').click(function()
+	{
+		var hidden_schedule=".hidden-schedule-table[id="+$(this).attr('id')+"]";
+		if($(hidden_schedule).css('display')=='none')
+			$(hidden_schedule).show(400);
+		else
+			$(hidden_schedule).hide(400);
+	});
 });

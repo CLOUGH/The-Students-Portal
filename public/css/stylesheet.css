@@ -186,3 +186,11 @@ td.register-column, th.register-column
 	font-size: 14px;
 
 }
+.hidden-schedule-table
+{
+	display: none;
+}
+.schedule_table
+{
+	margin: 0px;
+}
