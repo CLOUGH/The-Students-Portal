@@ -21,8 +21,13 @@ $(document).ready(function(){
 	{
 		var hidden_schedule=".hidden-schedule-table[id="+$(this).attr('id')+"]";
 		if($(hidden_schedule).css('display')=='none')
+		{
 			$(hidden_schedule).show(400);
-		else
+			$("a[id="+$(this).attr('id')+"] i").attr('class', 'icon-chevron-up');
+		}
+		else{
 			$(hidden_schedule).hide(400);
+			$("a[id="+$(this).attr('id')+"] i").attr('class', 'icon-chevron-down');
+		}
 	});
 });

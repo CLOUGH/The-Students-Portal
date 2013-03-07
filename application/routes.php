@@ -63,6 +63,8 @@ Route::get('student/student_detail/(:any)',array('before'=>'auth', 'as'=>'studen
 //Register Routes
 Route::controller('register');
 Route::get('register', array('before'=>'auth','as'=>'register', 'uses'=>'course@register'));
+Route::get('register/view_courses', array('before'=>'auth','as'=>'view_registered_courses', 'uses'=>'register@view_courses'));
+Route::get('register/drop',array('before'=>'auth','as'=>'drop_course', 'uses'=>'register@drop'));
 
 Route::get('academic_path', array('before'=>'auth','as'=>'generate_path', 'uses'=>'course@generate'));
 Route::get('overrides', array('before'=>'auth','as'=>'course_override', 'uses'=>'course@override'));

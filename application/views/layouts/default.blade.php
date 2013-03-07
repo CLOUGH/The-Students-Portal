@@ -88,8 +88,8 @@
 							<li class="dropdown {{$active_navigation['register']}} ?>">
 								<a  class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">Register</a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+									<li>{{HTML::link_to_route('view_registered_courses', 'View Registered Courses',array('tabindex'=>'-1' ))}}</li>
 									<li>{{HTML::link_to_route('register', 'Register for Course',array('tabindex'=>'-1' ))}}</li>
-									<li>{{HTML::link_to_route('course_override', 'View Registered Courses',array('tabindex'=>'-1' ))}}</li>
 								</ul>
 							</li>
 							@endif
