@@ -64,7 +64,58 @@
 		</table>
 	</div>
  	<div class="tab-pane" id="transcript">
-	 	
+	 	<div  style="text-align: center;">
+	 		<p><h2>Student ID#:{{$student->student_id}}</h2></p>
+		 	<p><h2>Name: {{$student->user->first_name}} {{$student->user->last_name}}</h2></p>
+			
+			<p><h3>Email:{{$student->user->email}}</h3></p>
+			<p><h3>Faculty:{{$student->faculty->name}}</h3></p>
+			<p><h3>Major:{{$student->major}}</h3></p>
+			<p><h3>Student Type: {{$student->student_type->name}}</h3></p>
+			<p><h3>Hall:{{$student->associated_hall}}</h3></p>
+		</div>
+		<h2>Registered Courses:</h2>
+		<div>
+			<table class="table table-striped table-hover">
+				<tr>
+					<th>Code</th>
+					<th>Title</th>
+					<th>Faculty</th>
+					<th>Credit</th>
+					<th>Semester</th>
+					<th>Level</th>
+					<th></th>
+				</tr>
+			@foreach($student->courses()->get() as $course)
+				<tr>
+					<td>{{HTML::link(URL::to_route('course_detail').'/'.$course->id, $course->code)}}</td>
+					<td>{{$course->title}}</td>
+					<td>{{$course->faculty->first()->name}}</td>
+					<td>{{$course->credit}}</td>
+					<td>{{$course->semester}}</td>
+					<td>{{$course->level}}</td>
+					<td><a href="#" class="toggle_course_scehdule" id="{{$course->id}}">Show Schedule </a></td>
+				</tr>
+				<tr class="hidden-schedule-table" id="{{$course->id}}">
+					<td></td>
+					<td  colspan="6">
+					<table class="table table-condensed schedule_table">
+					@foreach($student->schedules as $schedule)
+						@if($course->id == $schedule->course->id)
+							<tr>
+								<td>{{$schedule->type->first()->name}}</td>
+								<td>{{Course::army_to_normal_time($schedule->start_time).' - '.Course::army_to_normal_time($schedule->end_time)}}</td>
+								<td>{{$schedule->day}}</td>
+								<td ><span data-toggle='tooltip' title="{{$schedule->room->name}}">{{$schedule->room->initials}}</span></td>
+								<td>Lecturers</td>
+							</tr>
+						@endif
+					@endforeach
+					</table>
+					</td>
+				</tr>
+			@endforeach	
+		</div>
  	</div>
   	<div class="tab-pane" id="academic_path">
   	</div>

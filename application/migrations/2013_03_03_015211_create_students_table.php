@@ -16,6 +16,7 @@ class Create_Students_Table {
 			$table->integer('faculty_id');
 			$table->string('associated_hall');
 			$table->integer('student_type_id');
+			$table->string('major');
 			$table->timestamps();
 		});
 	}
