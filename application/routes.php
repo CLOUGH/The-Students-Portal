@@ -60,9 +60,11 @@ Route::get('course/course_detail/(:any)',array('before'=>'auth', 'as'=>'course_d
 //Student Routes
 Route::get('student/student_detail/(:any)',array('before'=>'auth', 'as'=>'student_detail', 'uses'=>'student@student_detail'));
 
+//Register Routes
+Route::controller('register');
+Route::get('register', array('before'=>'auth','as'=>'register', 'uses'=>'course@register'));
 
 Route::get('academic_path', array('before'=>'auth','as'=>'generate_path', 'uses'=>'course@generate'));
-Route::get('register', array('before'=>'auth','as'=>'register', 'uses'=>'course@register'));
 Route::get('overrides', array('before'=>'auth','as'=>'course_override', 'uses'=>'course@override'));
 Route::get('home', array('before'=>'auth','as'=>"home", 'uses'=>'home@index'));
 Route::get('/', array('before'=>'auth','as'=>"home", 'uses'=>'home@index'));

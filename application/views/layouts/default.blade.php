@@ -84,13 +84,15 @@
 									<li>{{HTML::link_to_route('generate_path', 'Generate Academic Path',array('tabindex'=>'-1' ))}}</li>
 								</ul>
 							</li>
+							@if(Auth::user()->type == '2' || Auth::user()->type =='1')
 							<li class="dropdown {{$active_navigation['register']}} ?>">
 								<a  class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">Register</a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 									<li>{{HTML::link_to_route('register', 'Register for Course',array('tabindex'=>'-1' ))}}</li>
-									<li>{{HTML::link_to_route('course_override', 'Request Course Override',array('tabindex'=>'-1' ))}}</li>
+									<li>{{HTML::link_to_route('course_override', 'View Registered Courses',array('tabindex'=>'-1' ))}}</li>
 								</ul>
 							</li>
+							@endif
 						</ul>
 						<ul class="nav" id="user-nav">
 							<li>

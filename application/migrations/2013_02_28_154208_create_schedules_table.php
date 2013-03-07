@@ -35,3 +35,4 @@ class Create_Schedules_Table {
 	}
 
 }
+?>

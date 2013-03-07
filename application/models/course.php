@@ -50,5 +50,9 @@ class Course extends Eloquent{
 	{
 		return $this->belongs_to('Faculty');
 	}
+	public function registration_requirement()
+	{
+		return $this->has_one('RegistrationRequirement');
+	}
 }
 ?>

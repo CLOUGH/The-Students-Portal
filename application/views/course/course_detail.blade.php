@@ -1,6 +1,7 @@
 @layout('layouts.default')
 
 @section('content')
+
 	<h4 class="page_heading">{{$course_detail->title}}</h4>
 	<p id="course_description">{{$course_detail->description}}</p>
 	
@@ -40,8 +41,17 @@
 	</div>
 
 	<h5 id="schedule-heading">Schedules</h5>
-	<table class="table table-striped">
+	{{Form::open('register/register_course')}}
+	@if(Session::has("registration_errors") )
+		<div class="alert alert-error" style="margin-left: 0px">
+			{{Session::get('registration_errors')}}	
+		</div>
+		{{Session::forget('registration_errors')}}
+	@endif
+
+	<table class="table table-striped">	
 		<tr>
+			<th>crn</th>	
 			<th>Type</th>
 			<th>Time</th>
 			<th>Day</th>
@@ -51,27 +61,29 @@
 		</tr>
 		@if(count($schedules)>0)			
 			@foreach($schedules as $schedule)
-					<tr>
-						<td>{{$schedule->type}}</td>
-						<td>{{Course::army_to_normal_time($schedule->start_time).' - '.Course::army_to_normal_time($schedule->end_time)}}</td>
-						<td>{{$schedule->day}}</td>
-						<td ><span data-toggle='tooltip' title="{{$schedule->room_name}}">{{$schedule->room_initial}}</span></td>
-						<td>Lecturers</td>
-						<td class="register-column">{{Form::checkbox('register')}}</td>
-					</tr>
+			<tr>
+				<td>{{$schedule->crn}}</td>
+				<td>{{$schedule->type}}</td>
+				<td>{{Course::army_to_normal_time($schedule->start_time).' - '.Course::army_to_normal_time($schedule->end_time)}}</td>
+				<td>{{$schedule->day}}</td>
+				<td ><span data-toggle='tooltip' title="{{$schedule->room_name}}">{{$schedule->room_initial}}</span></td>
+				<td>Lecturers</td>
+				<td class="register-column">{{Form::checkbox('schedule[]',$schedule->crn)}}</td>
+			</tr>
 			@endforeach
 			<tr>
-				<td colspan="5"></td>
+				<td colspan="6"></td>
 				<td class="register-column">
-					<button class="btn btn-small btn-inverse " type="button" >Register</button>
+					<input type="submit" class="btn btn-small btn-inverse " value="Register">
 				</td>
 			</tr>
 		@else
 			<tr>
-				<td colspan="6">Empty</td>
+				<td colspan="7">Empty</td>
 			</tr>
 		@endif
 	</table>
+	{{Form::close()}}
 	<br>
 
 	<div class="accordion-heading">
