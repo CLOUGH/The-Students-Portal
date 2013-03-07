@@ -4,7 +4,7 @@ class Search_Controller extends Base_Controller
 
 	public function get_course_search(){
 		
-		parent::make_active("academic_advisor");		
+		parent::make_active("student_advisory");		
 		return View::make("search.course_search")
 			->with('title','Search Course')
 			->with('active_navigation',parent::$acitve_navigation)
@@ -31,6 +31,7 @@ class Search_Controller extends Base_Controller
 	}
 	public function get_course_list($course_name,$course_code,$subject,$level,$credit_range_min,$credit_range_max,$semester)
 	{
+		parent::make_active("student_advisory");
 		$data = array(
 			'course_name'=>Search::decode_url($course_name),
 			'course_code'=>Search::decode_url($course_code),
@@ -42,7 +43,6 @@ class Search_Controller extends Base_Controller
 			);
 
 		$courses = Search::search_course($data,false);	
-		parent::make_active("student_advisory");
 		return View::make("search.course_list")
 			->with('title','Search Result')
 			->with('active_navigation',parent::$acitve_navigation)

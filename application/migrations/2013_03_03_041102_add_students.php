@@ -10,8 +10,11 @@ class Add_Students {
 	public function up()
 	{
 		DB::table('students')->insert(array(
-			'course_id'=>'1',
-			'required_course_id'=>'3',
+			'student_id'=>'620040027',
+			'user_id'=>'2',
+			'faculty_id'=>'1',
+			'associated_hall'=>'Chancellor',
+			'student_type_id'=>'1',
 			'created_at'=>date('Y-m-d H:m:s'),
 			'updated_at'=>date('Y-m-d H:m:s')
 		));
@@ -24,7 +27,7 @@ class Add_Students {
 	 */
 	public function down()
 	{
-		//
+		DB::table('students')->find('1')->delete();
 	}
 
 }

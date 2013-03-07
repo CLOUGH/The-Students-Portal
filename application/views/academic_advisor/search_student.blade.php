@@ -30,8 +30,8 @@
 					{{Form::label("degree", "Degree Type")}}
 					{{Form::text("degree")}}
 
-					{{Form::label("full_time","Type of Student")}}
-					{{Form::select("full_time", array('all'=>'All','1'=>'Full Time','2'=>'Part Time'))}}
+					{{Form::label("student_type","Type of Student")}}
+					{{Form::select("student_type", array('all'=>'All','1'=>'Full Time','2'=>'Part Time'))}}
 					<br>
 				</div>
 			</div>

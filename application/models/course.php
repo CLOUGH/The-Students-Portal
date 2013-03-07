@@ -42,5 +42,13 @@ class Course extends Eloquent{
 		else
 			return intval(intval($hour)==0?12:$hour).':'.$min." AM";
 	}
+	public function student()
+	{
+		return $this->has_many_and_belongs_to('Student','registered_courses');
+	}
+	public function faculty()
+	{
+		return $this->belongs_to('Faculty');
+	}
 }
 ?>

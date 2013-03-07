@@ -57,6 +57,10 @@ Route::get('search/course_list/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'
 Route::get('course/comments/(:any)',array('before'=>'auth', 'as'=>'comments', 'uses'=>'comments@course_comments'));
 Route::get('course/course_detail/(:any)',array('before'=>'auth', 'as'=>'course_detail', 'uses'=>'course@course_detail'));
 
+//Student Routes
+Route::get('student/student_detail/(:any)',array('before'=>'auth', 'as'=>'student_detail', 'uses'=>'student@student_detail'));
+
+
 Route::get('academic_path', array('before'=>'auth','as'=>'generate_path', 'uses'=>'course@generate'));
 Route::get('register', array('before'=>'auth','as'=>'register', 'uses'=>'course@register'));
 Route::get('overrides', array('before'=>'auth','as'=>'course_override', 'uses'=>'course@override'));
@@ -94,7 +98,9 @@ Event::listen('500', function()
 {
 	return Response::error('500');
 });
-
+// Event::listen('laravel.query', function($sql, $bindings, $time) {
+// 	var_dump($sql);
+// });
 /*
 |--------------------------------------------------------------------------
 | Route Filters

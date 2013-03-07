@@ -9,4 +9,12 @@ $(document).ready(function(){
 	},function(){
 		$(this).css("cursor","default");
 	});
+
+	//Enable the bootstrap tab feature to display different sections onclick
+	$('#myTab a').click(function (e)
+	{
+		console.log('sddss')
+		e.preventDefault();
+		$(this).tab('show');
+	})
 });

@@ -10,5 +10,13 @@ class Faculty extends Eloquent{
 			}	
 			return $faculty_list;			
 	}
+	public function student()
+	{
+		return $this->has_many('Student');
+	}
+	public function course()
+	{
+		return $this->has_many('Course');
+	}
 }
 ?>
