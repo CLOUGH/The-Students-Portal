@@ -69,10 +69,10 @@ return array(
 
 		'mysql' => array(
 			'driver'   => 'mysql',
-			'host'     => '127.0.0.1',
-			'database' => 'laravel',
-			'username' => 'root',
-			'password' => 'gtx@6075',
+			'host'     => 'tunnel.pagodabox.com',
+			'database' => 'the-students-portal',
+			'username' => 'celestina',
+			'password' => 'dYQZuKHc',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 		),
