@@ -11,7 +11,6 @@
 		<th>Credit</th>
 		<th>Semester</th>
 		<th>Level</th>
-
 		<th>View Schedule</th>
 		<th></th>
 	</tr>
@@ -33,7 +32,7 @@
 			@foreach($student->schedules as $schedule)
 				@if($course->id == $schedule->course->id)
 					<tr>
-						<td>{{$schedule->type->first()->name}}</td>
+						<td>{{$schedule->type->name}}</td>
 						<td>{{Course::army_to_normal_time($schedule->start_time).' - '.Course::army_to_normal_time($schedule->end_time)}}</td>
 						<td>{{$schedule->day}}</td>
 						<td ><span data-toggle='tooltip' title="{{$schedule->room->name}}">{{$schedule->room->initials}}</span></td>
