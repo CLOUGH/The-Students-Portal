@@ -101,6 +101,7 @@
 								</a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 									<li><a tabindex="-1" href="#">Messages</a></li>
+									<li><a tabindex="-1" href="{{URL::to_route('view_setting')}}">Manage Account</a></li>
 									<li><a id="logout-link" tabindex="-1" href="{{URL::to_route('logout')}}">
 											Logout
 											<i class="icon-off"></i>

@@ -66,6 +66,11 @@ Route::get('register', array('before'=>'auth','as'=>'register', 'uses'=>'course@
 Route::get('register/view_courses', array('before'=>'auth','as'=>'view_registered_courses', 'uses'=>'register@view_courses'));
 Route::get('register/drop',array('before'=>'auth','as'=>'drop_course', 'uses'=>'register@drop'));
 
+//Registering the user settings route
+Route::get('user/view_setting', array('before'=>'auth', 'as'=>'view_setting', 'uses'=>'user@view_setting'));
+Route::get('user/edit_setting', array('before'=>'auth', 'as'=>'edit_setting', 'uses'=>'user@edit_setting'));
+
+
 Route::get('academic_path', array('before'=>'auth','as'=>'generate_path', 'uses'=>'course@generate'));
 Route::get('overrides', array('before'=>'auth','as'=>'course_override', 'uses'=>'course@override'));
 Route::get('home', array('before'=>'auth','as'=>"home", 'uses'=>'home@index'));
