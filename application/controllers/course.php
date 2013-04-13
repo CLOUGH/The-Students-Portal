@@ -62,5 +62,16 @@ class Course_Controller extends Base_Controller
 			->with('user_first_name', Auth::user()->first_name)
 			->with('courses',$courses);
 	}
+	public function get_generate_adacemic_path()
+	{
+		parent::make_active("student_advisory");
+		return View::make("course.course_academic_generation")
+			->with('title','Academic Path Generation')
+			->with('active_navigation',parent::$acitve_navigation)
+			->with('user_type', Auth::user()->type)
+			->with('user_first_name', Auth::user()->first_name)
+			->with('degree_names',Degree::get_degree_names());
+
+	}
 }
 ?>

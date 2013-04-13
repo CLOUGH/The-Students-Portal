@@ -46,16 +46,13 @@ Route::get('academic_advisor/search_student', array('before'=>'auth','as'=>'sear
 Route::get('academic_advisor/student_list', array('before'=>'auth','as'=>'student_list', 'uses'=>'academic_advisor@student_list'));
 Route::post('academic_advisor/search_student', array('before'=>'auth','uses'=>'academic_advisor@search_student'));
 
-
-//Search Routing
-
-
 //Courses Routing
 Route::get('course/course_list/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)', array('before'=>'auth','uses'=>'course@course_list'));
 Route::get('course/comments/(:any)',array('before'=>'auth', 'as'=>'comments', 'uses'=>'comments@course_comments'));
 Route::get('course/course_detail/(:any)',array('before'=>'auth', 'as'=>'course_detail', 'uses'=>'course@course_detail'));
 Route::get('course/search_course', array('before'=>'auth','as'=>'search_course', 'uses'=>'course@course_search'));
 Route::post('course/search_course', array('uses'=>'course@course_search'));
+Route::get('academic_path', array('before'=>'auth','as'=>'generate_path', 'uses'=>'course@generate_adacemic_path'));
 
 //Student Routes
 Route::get('student/student_detail/(:any)',array('before'=>'auth', 'as'=>'student_detail', 'uses'=>'student@student_detail'));
@@ -72,7 +69,7 @@ Route::get('user/edit_setting', array('before'=>'auth', 'as'=>'edit_setting', 'u
 Route::post('user/save_user_setting', array('before'=>'auth', 'uses'=>'user@save_user_setting'));
 
 
-Route::get('academic_path', array('before'=>'auth','as'=>'generate_path', 'uses'=>'course@generate'));
+
 Route::get('overrides', array('before'=>'auth','as'=>'course_override', 'uses'=>'course@override'));
 Route::get('home', array('before'=>'auth','as'=>"home", 'uses'=>'home@index'));
 Route::get('/', array('before'=>'auth','as'=>"home", 'uses'=>'home@index'));
