@@ -41,7 +41,7 @@
 	</div>
 
 	<h5 id="schedule-heading">Schedules</h5>
-	{{Form::open('register/register_course')}}
+	{{Form::open('student/register_course')}}
 	@if(Session::has("registration_errors") )
 		<div class="alert alert-error" style="margin-left: 0px">
 			{{Session::get('registration_errors')}}	

@@ -8,6 +8,10 @@
 	{{HTML::script(URL::base().'/js/main.js')}}
 	{{HTML::script(URL::base().'/js/jquery.transit.js')}}
 	{{HTML::style(URL::base().'/css/stylesheet.css')}}
+	{{HTML::script('js/rhinoslider-1.05.min.js')}}
+	{{HTML::script('js/mousewheel.js')}}
+	{{HTML::script('js/easing.js')}}
+
 	<script>
 		$(document).ready(function(){
 
@@ -115,9 +119,17 @@
 			</div>
 			</nav>
 		@endif
-	
+	@if(URL::current()==URL::to_route("home"))	
+		<div class="banner">
+			{{HTML::style(URL::base().'/css/home.css')}}
+			@yield('banner')
+		</div>
+	@endif
 	<div class="main_contents">
 	@yield('content')
 	</div>
+</div>
+<div class="footer">
+</div>
 </body>
 </html>

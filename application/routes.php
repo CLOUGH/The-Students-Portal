@@ -40,7 +40,6 @@ Route::get('/', function()
 {
 	return View::make('home.index');
 });
-Route::get('student_profile', array('before'=>'auth','as'=>'student_profile', 'uses'=>'student@transcript'));
 
 //Academic Advisor Routing
 Route::get('academic_advisor/search_student', array('before'=>'auth','as'=>'search_student', 'uses'=>'academic_advisor@search_student'));
@@ -49,26 +48,28 @@ Route::post('academic_advisor/search_student', array('before'=>'auth','uses'=>'a
 
 
 //Search Routing
-Route::get('search/search_course', array('before'=>'auth','as'=>'search_course', 'uses'=>'search@course_search'));
-Route::post('search/search_course', array('uses'=>'search@course_search'));
+
 
 //Courses Routing
-Route::get('search/course_list/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)', array('before'=>'auth','uses'=>'search@course_list'));
+Route::get('course/course_list/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)', array('before'=>'auth','uses'=>'course@course_list'));
 Route::get('course/comments/(:any)',array('before'=>'auth', 'as'=>'comments', 'uses'=>'comments@course_comments'));
 Route::get('course/course_detail/(:any)',array('before'=>'auth', 'as'=>'course_detail', 'uses'=>'course@course_detail'));
+Route::get('course/search_course', array('before'=>'auth','as'=>'search_course', 'uses'=>'course@course_search'));
+Route::post('course/search_course', array('uses'=>'course@course_search'));
 
 //Student Routes
 Route::get('student/student_detail/(:any)',array('before'=>'auth', 'as'=>'student_detail', 'uses'=>'student@student_detail'));
+Route::post('student/register_course', array('before'=>'auth', 'uses'=>'student@register_course'));
+Route::get('student/view_courses', array('before'=>'auth','as'=>'view_registered_courses', 'uses'=>'student@view_courses'));
+Route::get('register', array('before'=>'auth','as'=>'register', 'uses'=>'student@register'));
+Route::get('student/drop',array('before'=>'auth','as'=>'drop_course', 'uses'=>'student@drop'));
+Route::get('student/student_profile',array('before'=>'auth','as'=>'student_profile','uses'=>'student@student_profile'));
 
-//Register Routes
-Route::controller('register');
-Route::get('register', array('before'=>'auth','as'=>'register', 'uses'=>'course@register'));
-Route::get('register/view_courses', array('before'=>'auth','as'=>'view_registered_courses', 'uses'=>'register@view_courses'));
-Route::get('register/drop',array('before'=>'auth','as'=>'drop_course', 'uses'=>'register@drop'));
 
 //Registering the user settings route
 Route::get('user/view_setting', array('before'=>'auth', 'as'=>'view_setting', 'uses'=>'user@view_setting'));
 Route::get('user/edit_setting', array('before'=>'auth', 'as'=>'edit_setting', 'uses'=>'user@edit_setting'));
+Route::post('user/save_user_setting', array('before'=>'auth', 'uses'=>'user@save_user_setting'));
 
 
 Route::get('academic_path', array('before'=>'auth','as'=>'generate_path', 'uses'=>'course@generate'));

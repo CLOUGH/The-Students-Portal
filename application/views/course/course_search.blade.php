@@ -2,7 +2,7 @@
 
 @section('content')
 	<h4 class="page_heading">Search Course</h4>
-	{{Form::open("search/search_course",'POST',array('id'=>'course_search_form'))}}
+	{{Form::open("course/search_course",'POST',array('id'=>'course_search_form'))}}
 		
 		<div class="row-fluid ">
 		<div class="span6">
