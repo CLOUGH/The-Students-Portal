@@ -29,13 +29,31 @@
 @endsection
 
 @section('content')
-	
-	<h4 class="page_heading">News</h4>
-	@foreach($news_list as $news)
-		<div class="post" >
-			<h5>{{$news->title}}</h5>
-			<p class="message">{{$news->body}}</p>
-			<small class="news_date">{{substr($news->updated_at, 0, 9); }}</small>
+	<div class="row">
+		<div class="span12">
+			<div class="span9">
+				<h4 class="page_heading">News</h4>
+				@foreach($news_list as $news)
+					<div class="post" >
+						<div class="post_date">
+							<p class="date">
+								{{$news->s_updated_at()[1]}}
+								<br>
+								<span style="font-size: 14px">{{$news->s_updated_at()[2]}}</span>
+							</p>
+						</div>
+						<div class="post_header">
+							<h5>{{$news->title}}</h5>
+						</div>	
+						<div class="post_body">					
+							<p class="message">{{$news->body}}</p>
+						</div>
+					</div>
+				@endforeach
+			</div>
+			<div class="span2 home_sidebar">
+				sidebar
+			</div>
 		</div>
-	@endforeach
+	</div>
 @endsection

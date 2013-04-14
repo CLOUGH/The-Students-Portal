@@ -84,7 +84,7 @@ class Student extends Eloquent
 		elseif($array_key[0]=='A')
 		{
 			$year = substr($array_key, 1);
-			return "1st Semester of ".(intval($year)-1)."/".$year." Academic Year";
+			return "1st Semester of ".$year."/".(intval($year)+1)." Academic Year";
 		}
 	}
 }
