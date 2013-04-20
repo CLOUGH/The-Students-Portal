@@ -4,6 +4,7 @@
 	<title>{{$title}}</title>
 	{{Asset::container('bootstrapper')->styles()}}
 	{{Asset::container('bootstrapper')->scripts()}}
+
 	{{HTML::script(URL::base().'/js/jquery.backstretch.min.js')}}
 	{{HTML::script(URL::base().'/js/main.js')}}
 	{{HTML::script(URL::base().'/js/jquery.transit.js')}}
@@ -85,7 +86,7 @@
 								<a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#">Course Advisory</a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" >
 									<li>{{HTML::link_to_route('search_course', 'Search for Course',array('tabindex'=>'-1'))}}</li>
-									<li>{{HTML::link_to_route('generate_path', 'Generate Academic Path',array('tabindex'=>'-1' ))}}</li>
+									<li>{{HTML::link_to_route('academic_path', 'Generate Academic Path',array('tabindex'=>'-1' ))}}</li>
 								</ul>
 							</li>
 							@if(Auth::user()->type == '2' || Auth::user()->type =='1')

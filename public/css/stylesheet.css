@@ -308,3 +308,25 @@ td.register-column, th.register-column
 {
 	margin-top: 60px;
 }
+.academic_pages
+{
+	overflow: hidden;
+}
+.academic_pages #description
+{
+	width:800px;
+}
+.academic_nav_stages
+{
+}
+.academic_pages a.back
+{
+	margin-top: 20px;
+	float:left;
+}
+.academic_pages a.next
+{
+	margin-top: 20px;
+	margin-right: 100px;
+	float:right;
+}

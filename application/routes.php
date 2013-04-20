@@ -52,7 +52,10 @@ Route::get('course/comments/(:any)',array('before'=>'auth', 'as'=>'comments', 'u
 Route::get('course/course_detail/(:any)',array('before'=>'auth', 'as'=>'course_detail', 'uses'=>'course@course_detail'));
 Route::get('course/search_course', array('before'=>'auth','as'=>'search_course', 'uses'=>'course@course_search'));
 Route::post('course/search_course', array('uses'=>'course@course_search'));
-Route::get('academic_path', array('before'=>'auth','as'=>'generate_path', 'uses'=>'course@generate_adacemic_path'));
+Route::get('course/academic_path', array('before'=>'auth','as'=>'academic_path', 'uses'=>'course@academic_path'));
+Route::post('course/generate_path', array('before'=>'auth','as'=>'generate_path','uses'=>'course@generate_academic_path'));
+Route::get('course/prerequisites/(:any)/(:any)', array('before'=>'auth', 'as'=>'prerequisites','uses'=>'course@course_prerequisites'));
+
 
 //Student Routes
 Route::get('student/student_detail/(:any)',array('before'=>'auth', 'as'=>'student_detail', 'uses'=>'student@student_detail'));

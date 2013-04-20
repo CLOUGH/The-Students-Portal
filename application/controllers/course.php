@@ -62,10 +62,11 @@ class Course_Controller extends Base_Controller
 			->with('user_first_name', Auth::user()->first_name)
 			->with('courses',$courses);
 	}
-	public function get_generate_adacemic_path()
+	public function get_academic_path()
 	{
+
 		parent::make_active("student_advisory");
-		return View::make("course.course_academic_generation")
+		return View::make("course.course_academic_path")
 			->with('title','Academic Path Generation')
 			->with('active_navigation',parent::$acitve_navigation)
 			->with('user_type', Auth::user()->type)
@@ -73,5 +74,78 @@ class Course_Controller extends Base_Controller
 			->with('degree_names',Degree::get_degree_names());
 
 	}
+	
+	public function post_generate_academic_path()
+	{
+		parent::make_active('student_advisory');
+		return View::make("course.course_academic_generation")
+			->with('title','Academic Path Generation')
+			->with('active_navigation',parent::$acitve_navigation)
+			->with('user_type', Auth::user()->type)
+			->with('user_first_name', Auth::user()->first_name);
+	}
+	public function get_course_prerequisites($degree_name,$student_id)
+	{
+		$errors = array();
+		$user = Auth::user();
+		$student= new Student;
+		if($user->type ==2)
+		{
+			$student = Student::with("completed_courses")->where_user_id($user->id);
+		}
+		else
+		{
+			$student = Student::with("completed_courses")->where_student_id($student_id)->first();
+			if(is_null($student))
+				$errors["student_not_found"] = true;
+		}
+
+		//Get degree courses 
+		$degree = Degree::with("degree_courses")->where_name(urldecode($degree_name))->where_degree_type_id("1")->first();
+		if(!is_null($degree)){
+			foreach($degree->degree_courses as $degree_course)
+			{
+				$met_requirement = false;
+				$prerequisites = $degree_course->course->pre_requisites;
+				//if prerequisites exists for the course then do the following:
+				//check if the student have the already met the requirement for the course
+				if(!empty($prerequisites))
+				{
+					//For each prerequiste a course have get test if the student have already done that course
+					foreach($prerequisites as $required_course)
+					{
+						//For each completed course test if the student have match the required course code
+						foreach($student->completed_courses  as $completed_course)
+						{
+							//if the student have done that course already then stop the loop for testing anymore
+							//student completed course and set requirement mathed for the course
+							if($completed_course->course_id == $required_course->course_id)
+							{
+								$met_requirement = true; 
+								break;
+							}
+						}
+						//stop the loop for testing the other prerequistes if the student met the requirement of the 
+						//course
+						if($met_requirement == true) // 
+							break;
+					}
+				}
+				else
+				{
+					$met_requirement =true;
+				}
+				var_dump($degree_course->course->title);
+				var_dump($met_requirement);
+				echo("\n");
+			}
+		}
+		else
+			$errors["degree_not_found"]	= true;
+
+
+		return Response::json(array(
+			"errors"=>$errors));
+	}	
 }
 ?>
