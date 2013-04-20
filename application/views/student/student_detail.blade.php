@@ -1,6 +1,5 @@
 @layout('layouts.default')
 @section('content')
-
 <h4 class="page_heading">{{$student->user->first_name.' '.$student->user->last_name}}</h4>
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
@@ -89,7 +88,7 @@
 
 		 		<p class="span7"><strong>Academic Standing:</strong>
 		 			<br>
-		 			<strong>Term GPA:</strong>
+		 			<strong>Term GPA: {{Student::calc_gpa($semester_completed_courses)}}</strong>
 		 		</p>
 
 			 	<table class="table span7 table-condensed table-bordered">
@@ -102,16 +101,15 @@
 			 		@foreach($semester_completed_courses as $completed_course)
 				 		<tr>
 				 			<td class="span4">{{$completed_course->course->title}}</td>
-				 			<td></td>
+				 			<td>{{$completed_course->course->credit}}</td>
 				 			<td>{{$completed_course->grade}}</td>
-				 			<td></td>
+				 			<td>{{Student::points(array($completed_course))}}</td>
 				 		</tr>
 			 		@endforeach
 			 	</table>
 			 	<table class="table table-condensed span8">
 			 		<tr>
 			 			<td></td>
-						<th>Attempted Hours</th>
 						<th>Passed Hours</th>
 						<th>Attempted Hours</th>
 						<th>GPA Hours</th>
@@ -120,12 +118,11 @@
 					</tr>
 					<tr>
 						<th>Current Term</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>{{Student::hours($semester_completed_courses)}}</td>
+						<td>{{Student::hours($semester_completed_courses)}}</td>
+						<td>{{Student::hours($semester_completed_courses)}}</td>
+						<td>{{Student::points($semester_completed_courses)}}</td>
+						<td>{{Student::calc_gpa($semester_completed_courses)}}</td>
 					</tr>
 					<tr>
 						<th>Cumulative</th>

@@ -19,6 +19,16 @@ class Add_Students {
 			'created_at'=>date('Y-m-d H:m:s'),
 			'updated_at'=>date('Y-m-d H:m:s')
 		));
+		DB::table('students')->insert(array(
+			'student_id'=>'620043090',
+			'user_id'=>'4',
+			'faculty_id'=>'1',
+			'associated_hall'=>'Taylor',
+			'student_type_id'=>'1',
+			'major'=>'Computer Science',
+			'created_at'=>date('Y-m-d H:m:s'),
+			'updated_at'=>date('Y-m-d H:m:s')
+		));
 	}
 
 	/**
@@ -29,6 +39,7 @@ class Add_Students {
 	public function down()
 	{
 		DB::table('students')->where('id','=','1')->delete();
+		DB::table('students')->where('id','=','2')->delete();
 	}
 
 }

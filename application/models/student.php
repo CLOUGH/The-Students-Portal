@@ -1,7 +1,7 @@
 <?php
-
 class Student extends Eloquent 
 {
+	
 	public function user()
 	{
 		return $this->belongs_to('User');
@@ -87,5 +87,88 @@ class Student extends Eloquent
 			return "1st Semester of ".$year."/".(intval($year)+1)." Academic Year";
 		}
 	}
+
+	public static function hours($courses){
+			$legend = array("A+" => 4.0, "A" => 4.0,"A-"=>3.67, "B+" =>3.33,
+        	"B"=>3.0, "B-"=>2.67,"C+"=>2.33,"C"=>2.0,"C-",
+        	"D+"=>1.33,"D"=>1.00,"D-"=>0.67);
+
+		$grades = array();
+		$i =0;
+        foreach($courses as $course)
+        {
+        	$grades[$i] = $course->grade;
+        	$credited_hours[$i] = $course->course->credit;
+        	$i++;
+        }
+ 
+      
+        $grades = array_combine($grades, $credited_hours);
+		$total_gp = 0;
+		$total_hours = 3;
+		foreach($grades as $grades => $credited_hours) {
+		        $total_hours += $credited_hours;
+		        $gpa = $legend[$grades];
+			$total_gp += $credited_hours* $gpa;				
+		}
+		echo number_format($total_hours, 2, '.', ',');
+	}
+
+
+	public static function points($courses){
+			$legend = array("A+" => 4.0, "A" => 4.0,"A-"=>3.67, "B+" =>3.33,
+        	"B"=>3.0, "B-"=>2.67,"C+"=>2.33,"C"=>2.0,"C-",
+        	"D+"=>1.33,"D"=>1.00,"D-"=>0.67);
+
+		$grades = array();
+		$i =0;
+        foreach($courses as $course)
+        {
+        	$grades[$i] = $course->grade;
+        	$credited_hours[$i] = $course->course->credit;
+        	$i++;
+        }
+ 
+      
+        $grades = array_combine($grades, $credited_hours);
+		$total_gp = 0;
+		$total_hours = 0;
+		foreach($grades as $grades => $credited_hours) {
+		        $total_hours += $credited_hours;
+		        $gpa = $legend[$grades];
+			$total_gp += $credited_hours* $gpa;				
+		}
+		echo number_format($total_gp, 2, '.', ',');
+	}
+
+	
+
+
+	public static function calc_gpa($courses){
+		$legend = array("A+" => 4.0, "A" => 4.0,"A-"=>3.67, "B+" =>3.33,
+        	"B"=>3.0, "B-"=>2.67,"C+"=>2.33,"C"=>2.0,"C-",
+        	"D+"=>1.33,"D"=>1.00,"D-"=>0.67);
+
+		$grades = array();
+		$i =0;
+        foreach($courses as $course)
+        {
+        	$grades[$i] = $course->grade;
+        	$credited_hours[$i] = $course->course->credit;
+        	$i++;
+        }
+ 
+      
+        $grades = array_combine($grades, $credited_hours);
+		$total_gp = 0;
+		$total_hours = 0;
+		foreach($grades as $grades => $credited_hours) {
+		        $total_hours += $credited_hours;
+		        $gpa = $legend[$grades];
+			$total_gp += $credited_hours* $gpa;				
+		}
+		echo number_format($total_gp / $total_hours, 2, '.', ',');
+	}
+
 }
 ?>
