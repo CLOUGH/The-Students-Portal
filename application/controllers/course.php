@@ -136,6 +136,8 @@ class Course_Controller extends Base_Controller
 					$met_requirement =true;
 				}
 				var_dump($degree_course->course->title);
+				var_dump($degree_course->course->code);
+				var_dump($degree_course->course_id);
 				var_dump($met_requirement);
 				echo("\n");
 			}

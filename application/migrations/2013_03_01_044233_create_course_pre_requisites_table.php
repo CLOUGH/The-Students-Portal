@@ -12,6 +12,7 @@ class Create_Course_Pre_Requisites_Table {
 		Schema::create('pre_requisites', function($table){
 			$table->increments('id');
 			$table->integer('course_id');
+			$table->boolean('linked_mandatory');
 			$table->integer('required_course_id');
 			$table->timestamps();
 		});

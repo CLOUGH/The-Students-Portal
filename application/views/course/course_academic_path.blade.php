@@ -107,7 +107,7 @@ function get_prerequisites_courses()
 	
 }
 /*
-$.get("{{URL::to_route('degree_core_courses')}}/"+$('[name=degree_name]').text(),function(data)
+$.get(""+$('[name=degree_name]').text(),function(data)
 	{
 		var JSONObject = data;
 		$.each(JSONObject['core_courses'],function(index,value){
