@@ -55,6 +55,7 @@ Route::post('course/search_course', array('uses'=>'course@course_search'));
 Route::get('course/academic_path', array('before'=>'auth','as'=>'academic_path', 'uses'=>'course@academic_path'));
 Route::post('course/generate_path', array('before'=>'auth','as'=>'generate_path','uses'=>'course@generate_academic_path'));
 Route::get('course/prerequisites/(:any)/(:any)', array('before'=>'auth', 'as'=>'prerequisites','uses'=>'course@course_prerequisites'));
+Route::get('course/course_info/(:any)', array('before'=>'auth', 'as'=>'course_info','uses'=>'course@course_info'));
 
 
 //Student Routes

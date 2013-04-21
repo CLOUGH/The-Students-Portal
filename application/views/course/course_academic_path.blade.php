@@ -17,7 +17,7 @@
 			<a href="#3" data-toggle="tab" class="tab_link">Degree Information</a>
 		</li>
 		<li class="disabled" id="tab4">
-			<a href="#4" data-toggle="tab" class="tab_link">Course Information</a>
+			<a href="#4" data-toggle="tab" class="tab_link">Finish</a>
 		</li>
 	</ul>
 	{{Form::open(URL::to_route('generate_path'), 'POST')}}
@@ -34,7 +34,7 @@
 				so that guides the student to his or her goals.
 			</p>
 			<br>
-			<a href="#{{$user_type!=2?2:3}}" class="btn next">Start</a>
+			<a href="#{{$user_type!=2?2:3}}" class="btn next" {{$user_type!=2?'':"onclick='get_prerequisites_courses()'"}}>Start</a>
 		</div>
 
 		<div id="2" class="academic_pages tab-pane">
@@ -46,43 +46,46 @@
 			@endif
 			<br>
 			<a href="#1" class="btn back">Back</a>
-			<a href="#3" class="btn next">Next</a>
+			<a href="#3" class="btn next" {{$user_type!=2?"onclick='get_prerequisites_courses()'":''}}>Next</a>
 		</div>
 
 		<div id ="3" class="academic_pages tab-pane">
 			{{Form::label("degree_name", "Degree")}}
-			{{Form::select("degree_name", $degree_names,array("onblur"=>"get_prerequisites_courses()"))}}
+			{{Form::select("degree_name", $degree_names,'',array("onchange"=>"get_prerequisites_courses()"))}}
 			
+
+			<div class="alert alert-block" id="academic-path-warning">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<h4>Warning!</h4>
+				<p>You have not met the pre-requisite for some of the courses belonging to this degree.
+					If you still wish to continue generating a academic path any required course will be a preliminary
+					course. This will result in you being a year behind with that course.Below is a list of preliminary courses that you must select to include in the <em><strong>
+					Academic Path</strong></em>.
+				</p>
+			</div>
+
+			<div id="required_course_list">
+				<div class="required_courses" id="required_course_prototype">
+					<p class="required_course_title"></p>
+				</div>
+			</div>
+
 			<br>			
 			<a href="#{{$user_type!=2?2:1}}" class="btn back">Back</a>
 			<a href="#4" class="btn next">Next</a>
 			<br>
-
-			<div class="alert alert-block">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<h4>Warning!</h4>
-				Best check yo self, you're not...
-			</div>
 		</div>	
 		<div id="4" class="academic_pages tab-pane">
-			<p>Courses have several pre-requisites which are needed before you can register for a course.
-				To generate a <strong><em>Academic Path</em></strong> we need you to select which one of
-				the prerequisites you would like to use in your <strong><em>Academic Path</em></strong>.
+			<p style="text-align: center;font-size:16px">
+				<strong>Thats all!</strong>
+				 <br>
+				Now we will generate your academic path.
 			</p>
 			<br>
 			<br>
-			<table class="table table-condensed" id="course_prereq_tbl" style="font-size: 11px;">
-				<tr>
-					<th>Code</th>
-					<th>Title</th>
-					<th>Faculty</th>
-					<th>Credit</th>
-					<th>Semester</th>
-					<th>Level</th>
-					<th>View </th>
-				</tr>
-			</table>
+			
 			<a href="#3" class="btn back">Back</a>
+			<a href="#" class="btn next">Finish</a>
 		</div>
 	</div>
 	{{Form::close()}}
@@ -91,54 +94,82 @@
 
 @endsection
 <script type="text/javascript">
+
+
 function get_prerequisites_courses()
 {
-	var degree_name = $('[name=degree_name]').text();
-	@if($user_type !=2)
-		var student_id  = $('[name=student_id]').text();
-	@else
-		var student_id = '';
-	@endif
-	alert("{{URL::to_route('prerequisites')}}");
-	$.get("{{URL::to_route('prerequisites')}}/"+degree_name+"/"+student_id, function(data)
-	{
 
-	});
+	var degree_name = $('[name=degree_name]').text();
+	var student_id = 'null';
+	@if($user_type !=2)
+		if( $('[name=student_id]').val()!="")
+			student_id  = $('[name=student_id]').val();
+	@endif
+	$.ajax({
+		type: "GET",
+		url: "{{URL::to_route('prerequisites')}}/"+degree_name+"/"+student_id+"/",
+		data: {},
+		dataType: 'json',
+		async: false,
+		success: function(data)
+		{
+			console.log(data);
+			var errors = data.errors;
+			var course = data.course_list;
+			if(errors.student_not_found || errors.degree_not_found)
+			{
+				alert("error found");
+			}
+			else
+			{	
+				$.each(course,function(index,value){
+					//Test if the 
+					if(value.is_requirement_met==false && value.required_courses.length>0)
+					{
+						$("#academic-path-warning").css("display","block");
+						var req_course_element  = $("#required_course_prototype").clone()
+						req_course_element.attr('id',index);
+						$.ajax({
+							type: "GET",
+							url: "{{URL::to_route('course_info')}}/"+value.course_id, 
+							data: {},
+							dataType: 'json',
+							async: false,
+							success: function(course_info)
+							{
+								var course_detail_route = "{{URL::to_route('course_detail')}}";
+								req_course_element.find(".required_course_title:first-child").append(
+									"<a href='"+course_detail_route+"/"+course_info.id+"'>"+course_info.title+
+									"</a>");
+							}});
+						for(var i=0;i<value.required_courses.length;i++)
+						{
+							$.ajax({
+							type: "GET",
+							url: "{{URL::to_route('course_info')}}/"+value.required_courses[i],
+							data: {},
+							dataType: 'json',
+							async: false,
+							success: function(course_info)
+							{
+								req_course_element.append(
+									"<label>"+course_info.title+"</label>");
+								req_course_element.append(
+									"<input type=radio name='required_courses_for"+value.course_id+"' value='"+course_info.id+"'>");
+								
+								console.log(course_info);
+							}});
+						}
+						
+						req_course_element.css('display',"block");
+
+						$("#required_course_list").append(req_course_element);
+					}
+				});
+			}
+		}
+		});
 	
 }
-/*
-$.get(""+$('[name=degree_name]').text(),function(data)
-	{
-		var JSONObject = data;
-		$.each(JSONObject['core_courses'],function(index,value){
-			
-			console.log(value[6].length==0);
-			if(value[6].length!=0)
-			{
-				var row = 	"<tr>"
-								+"<td><a href='{{URL::base()}}/course/course_detail/"+value[1]+"'>"+value[7]+"</a></td>"
-								+"<td>"+value[0]+"</td>"
-								+"<td>"+value[5]+"</td>"
-								+"<td>"+value[4]+"</td>"
-								+"<td>"+value[2]+"</td>"
-								+"<td>"+value[3]+"</td>"
-								+"<td><a class='toggle_course_pre_req' id='"+value[1]+"''><i class='icon-chevron-down'></i></a></td>"
-							+"</tr>";
-				$("#course_prereq_tbl").append(row);
-				row = 	"<tr class='hidden-pre_req-table' id='"+value[1]+"'>"+
-							"<td></td>"+
-							"<td  colspan='6'>"+
-							"<table class='table table-condensed schedule_table'>"+
-								"<tr>"+
-									"<td>"+value[6][0][6]+"</td>"+
-									"<td>"+value[6][0][0]+"</td>"+
-								"</tr>"+
 
-							"</table>";
-				$("#course_prereq_tbl").append(row);
-			}
-			
-		});
-	});
-*/
 </script>

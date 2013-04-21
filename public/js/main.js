@@ -30,19 +30,7 @@ $(document).ready(function(){
 			$("a[id="+$(this).attr('id')+"] i").attr('class', 'icon-chevron-down');
 		}
 	});
-	$('.toggle_course_scehdule').click(function()
-	{
-		var hidden_schedule=".hidden-schedule-table[id="+$(this).attr('id')+"]";
-		if($(hidden_schedule).css('display')=='none')
-		{
-			$(hidden_schedule).show(400);
-			$("a[id="+$(this).attr('id')+"] i").attr('class', 'icon-chevron-up');
-		}
-		else{
-			$(hidden_schedule).hide(400);
-			$("a[id="+$(this).attr('id')+"] i").attr('class', 'icon-chevron-down');
-		}
-	});
+	
 	/*********************************************************************************************************
 	Functions that are used to controll how the Academic Generation Page Behaves
 	*********************************************************************************************************/
