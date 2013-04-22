@@ -5,7 +5,7 @@
 		public static $table='message_heads';
 
 		public function message_body(){
-			return $this->has_many('MessageBody');
+			return $this->has_many('MessageBody','message_head_id');
 		}
 		public function user(){
 			return $this->belongs_to('User');

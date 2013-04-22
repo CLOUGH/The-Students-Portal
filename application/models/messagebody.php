@@ -6,7 +6,7 @@
 
 		public function message_head()
 		{
-		    return $this->belongs_to('MessageHead');
+		    return $this->belongs_to('MessageHead','message_head_id');
 		}
 		public function from_user(){
 			return $this->has_one('User');

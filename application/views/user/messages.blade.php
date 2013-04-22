@@ -30,7 +30,7 @@
  		<tr>
  			<td>{{$message_head->user->first_name." ".$message_head->user->last_name}}</td>
  			<td>{{$message_head->subject}}</td>
- 			<td>@foreach($message_head->message_body as $body){$body->message_body; break;}</td>
+ 			<td>{{$message_head->message_body[0]->message_body}}</td>
  			<td class="message_body"></td>	
 
  		</tr>
