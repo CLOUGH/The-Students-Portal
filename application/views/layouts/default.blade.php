@@ -9,9 +9,12 @@
 	{{HTML::script(URL::base().'/js/main.js')}}
 	{{HTML::script(URL::base().'/js/jquery.transit.js')}}
 	{{HTML::style(URL::base().'/css/stylesheet.css')}}
-	{{HTML::script('js/rhinoslider-1.05.min.js')}}
-	{{HTML::script('js/mousewheel.js')}}
-	{{HTML::script('js/easing.js')}}
+	{{HTML::style(URL::base().'/css/datepicker.css')}}
+
+	{{HTML::script(URL::base().'/js/rhinoslider-1.05.min.js')}}
+	{{HTML::script(URL::base().'/js/mousewheel.js')}}
+	{{HTML::script(URL::base().'/js/easing.js')}}
+	{{HTML::script(URL::base().'/js/datetimepicker.jss')}}
 
 	<script>
 		$(document).ready(function(){

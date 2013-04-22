@@ -110,7 +110,7 @@ function get_prerequisites_courses()
 		url: "{{URL::to_route('prerequisites')}}/"+degree_name+"/"+student_id+"/",
 		data: {},
 		dataType: 'json',
-		async: false,
+		async: true,
 		success: function(data)
 		{
 			console.log(data);
@@ -134,7 +134,7 @@ function get_prerequisites_courses()
 							url: "{{URL::to_route('course_info')}}/"+value.course_id, 
 							data: {},
 							dataType: 'json',
-							async: false,
+							async: true,
 							success: function(course_info)
 							{
 								var course_detail_route = "{{URL::to_route('course_detail')}}";
@@ -149,7 +149,7 @@ function get_prerequisites_courses()
 							url: "{{URL::to_route('course_info')}}/"+value.required_courses[i],
 							data: {},
 							dataType: 'json',
-							async: false,
+							async: true,
 							success: function(course_info)
 							{
 								req_course_element.append(
