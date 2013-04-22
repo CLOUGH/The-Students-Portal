@@ -5,6 +5,7 @@ class Create_Academic_Path_Table {
 	public function up()
     {
 		Schema::create('academic_paths', function($table) {
+			$table->string('name');
 			$table->integer('degree_id');
 			$table->text('description');
 			$table->integer('student_id');

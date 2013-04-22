@@ -308,7 +308,78 @@ td.register-column, th.register-column
 {
 	margin-top: 60px;
 }
+
 .table tr .messaging_body
 {
 	display: none;
+}
+.academic_pages
+{
+	overflow: hidden;
+}
+.academic_pages #description
+{
+	width:800px;
+}
+.academic_nav_stages
+{
+}
+.academic_pages a.back
+{
+	margin-top: 20px;
+	float:left;
+}
+.academic_pages a.next
+{
+	margin-top: 20px;
+	float:right;
+}
+#academic-path-warning
+{
+	display:none;
+}
+
+.academic_pages .required_courses
+{
+	border: 1px solid #ddd;
+	overflow: hidden;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	background-color: #fff;
+	position: relative;
+	margin-bottom: 20px;
+	padding-top:40px;
+	display: none;
+	padding-left:10px;
+
+}
+.academic_pages .required_courses label
+{
+	display: inline;
+	float:left;
+	margin-right: 20px;
+	clear:both;
+}
+.academic_pages .required_courses input
+{
+	float:left;
+}
+.academic_pages .required_course_title
+{
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	padding: 3px 7px;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+	color: #9da0a4;
+	-webkit-border-radius: 4px 0 4px 0;
+	-moz-border-radius: 4px 0 4px 0;
+	border-radius: 4px 0 4px 0;
+	font-weight: bold;
+	font-size: 14px;
+
 }

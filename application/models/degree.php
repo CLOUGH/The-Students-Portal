@@ -1,5 +1,6 @@
 <?php 
-class Degree extends Eloquent{
+class Degree extends Eloquent
+{
 	public static function get_degrees()
 	{
 		$degrees= array();
@@ -25,6 +26,10 @@ class Degree extends Eloquent{
 			}
 		}
 		return $degree_names;
+	}
+	public function degree_courses()
+	{
+		return $this->has_many("DegreeCourse");
 	}
 }
 ?>

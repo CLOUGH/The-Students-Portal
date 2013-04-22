@@ -8,6 +8,7 @@ class Create_Academic_Path_Courses_Table {
 			$table->integer('academic_path_id');
 			$table->integer('course_id');
 			$table->date('year');
+			$table->integer('academic_path_type_id');
 			$table->increments('id');
 			$table->timestamps();
 	});

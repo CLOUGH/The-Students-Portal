@@ -19,6 +19,30 @@ class Course extends Eloquent{
 										->where('pre_requisites.course_id','=',$course_id)
 										->get(array('courses.id as course_id','courses.code','courses.title'));
 	}
+	public static function get_course_prerequisites($id)
+	{
+		
+		$pre_requisites = Course::find(intval($id))->pre_requisites;
+
+		$response = array();
+		if(!is_null($pre_requisites))
+		{
+			foreach($pre_requisites as $course)
+			{
+				array_push($response,array(
+					$course->course->title,
+					$course->course->id,
+					$course->course->semester,
+					$course->course->level,
+					$course->course->credit,
+					$course->course->faculty->name,
+					$course->course->code
+					));
+			}
+		}
+		return $response;
+
+	}
 	public static function get_course_schedules($course_id)
 	{
 		return DB::table('schedules')->join('schedule_types','schedule_types.id','=','schedules.schedule_type_id')
@@ -28,6 +52,10 @@ class Course extends Eloquent{
 									'lecture_rooms.name as room_name', 'lecture_rooms.description as room_description',
 									'schedules.crn', 'schedules.max_capacity','schedules.start_time','schedules.end_time',
 									'schedules.day'));
+	}
+	public function pre_requisites()
+	{
+	    return $this->has_many("PreRequisite");
 	}
 	public static function get_registration_requirements($course_id)
 	{
@@ -91,6 +119,7 @@ class Course extends Eloquent{
 	{
 		return substr(base64_decode($url),0, strrpos(base64_decode($url),'~',-1) );
 	}
+	
 		
 }
 ?>
