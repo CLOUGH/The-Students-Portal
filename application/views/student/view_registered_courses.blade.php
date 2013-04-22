@@ -29,6 +29,13 @@
 			<td></td>
 			<td  colspan="7">
 			<table class="table table-condensed schedule_table">
+				<tr>
+					<th>Type</th>
+					<th>Time</th>
+					<th>Day</th>
+					<th>Location</th>
+
+				</tr>
 			@foreach($student->schedules as $schedule)
 				@if($course->id == $schedule->course->id)
 					<tr>
@@ -36,7 +43,6 @@
 						<td>{{Course::army_to_normal_time($schedule->start_time).' - '.Course::army_to_normal_time($schedule->end_time)}}</td>
 						<td>{{$schedule->day}}</td>
 						<td ><span data-toggle='tooltip' title="{{$schedule->room->name}}">{{$schedule->room->initials}}</span></td>
-						<td>Lecturers</td>
 					</tr>
 				@endif
 			@endforeach

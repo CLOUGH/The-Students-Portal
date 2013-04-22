@@ -308,3 +308,7 @@ td.register-column, th.register-column
 {
 	margin-top: 60px;
 }
+.table tr .messaging_body
+{
+	display: none;
+}

@@ -54,7 +54,7 @@
 	@endif
 	<div class="container" id="main-container">
 		@if($active_navigation['website']=='active')
-			<h3 class="application-heading">The Student Portal</h3>
+			<h1 class="application-heading" style="font-family:Rage Italic;color:#23750d;">The Student Portal</h1>
 			<nav class="navbar">
 			<div class="navbar-inner" id="main-navbar">
 				<div class="container">
@@ -104,7 +104,7 @@
 									<span class="profile-icon-container"><i class="icon-user"></i></span>{{$user_first_name}}
 								</a>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-									<li><a tabindex="-1" href="#">Messages</a></li>
+									<li><a tabindex="-1" href="{{URL::to_route('messages')}}">Messages</a></li>
 									<li><a tabindex="-1" href="{{URL::to_route('view_setting')}}">Manage Account</a></li>
 									<li><a id="logout-link" tabindex="-1" href="{{URL::to_route('logout')}}">
 											Logout
