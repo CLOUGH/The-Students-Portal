@@ -36,6 +36,27 @@ class User_Controller extends Base_Controller {
             //     "new_password"=>Input::get('new_password')));
         }
         return Redirect::to_route("view_setting");
+     }
+    public function get_messages()
+    {
+        return View::make('user.messages')
+            ->with('title','Search for Students')
+            ->with('active_navigation',parent::$acitve_navigation)
+            ->with('user_type', Auth::user()->type)
+            ->with('user_first_name', Auth::user()->first_name)
+            ->with('user',User::with("message_head")->find(Auth::user()->id));
+
     }
+    public function send_messages()
+    {
+        return View::make('user.send_messages')
+            ->with('title','Search for Students')
+            ->with('active_navigation',parent::$acitve_navigation)
+            ->with('user_type', Auth::user()->type)
+            ->with('user_first_name', Auth::user()->first_name)
+            ->with('user',User::find(Auth::user()->id))
+            ->with('send_messages',User::find(Auth::user()->id));
+    }
+
 
 }

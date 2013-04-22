@@ -16,6 +16,10 @@
 		{
 			return $this->belongs_to('UserType','type');
 		}
+		public function message_head()
+		{
+		    return $this->has_many('MessageHead','user_id');
+		}
 		// public function update($args)
 		// {
 		// 	$this->first_name=$args['first_name'];

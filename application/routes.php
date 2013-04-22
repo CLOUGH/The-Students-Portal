@@ -70,6 +70,8 @@ Route::get('student/student_profile',array('before'=>'auth','as'=>'student_profi
 //Registering the user settings route
 Route::get('user/view_setting', array('before'=>'auth', 'as'=>'view_setting', 'uses'=>'user@view_setting'));
 Route::get('user/edit_setting', array('before'=>'auth', 'as'=>'edit_setting', 'uses'=>'user@edit_setting'));
+Route::get('user/messages', array('before'=>'auth', 'as'=>'messages', 'uses'=>'user@messages'));
+Route::get('user/send_messages', array('before'=>'auth', 'as'=>'send_messages', 'uses'=>'user@send_messages'));
 Route::post('user/save_user_setting', array('before'=>'auth', 'uses'=>'user@save_user_setting'));
 
 
