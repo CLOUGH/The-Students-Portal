@@ -399,3 +399,6 @@ td.register-column, th.register-column
 	text-indent: 20px;
 	margin-top: 5px;
 }
+textarea{
+	width: 100%;
+}
