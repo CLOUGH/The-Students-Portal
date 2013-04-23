@@ -6,6 +6,7 @@
 	{{Asset::container('bootstrapper')->scripts()}}
 
 	{{HTML::script(URL::base().'/js/jquery.backstretch.min.js')}}
+
 	{{HTML::script(URL::base().'/js/main.js')}}
 	{{HTML::script(URL::base().'/js/jquery.transit.js')}}
 	{{HTML::style(URL::base().'/css/stylesheet.css')}}
@@ -15,6 +16,7 @@
 	{{HTML::script(URL::base().'/js/mousewheel.js')}}
 	{{HTML::script(URL::base().'/js/easing.js')}}
 	{{HTML::script(URL::base().'/js/datetimepicker.jss')}}
+	{{HTML::script(URL::base().'/js/message.nav.js')}}
 
 	<script>
 		$(document).ready(function(){
@@ -58,7 +60,7 @@
 	@endif
 	<div class="container" id="main-container">
 		@if($active_navigation['website']=='active')
-			<h1 class="application-heading" style="font-family:Rage Italic;color:#23750d;">The Student Portal</h1>
+			<h1 class="application-heading" id="title_font">The Student Portal</h1>
 			<nav class="navbar">
 			<div class="navbar-inner" id="main-navbar">
 				<div class="container">

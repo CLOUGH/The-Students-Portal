@@ -383,3 +383,19 @@ td.register-column, th.register-column
 	font-size: 14px;
 
 }
+#title_font{
+	font-family:Rage Italic;
+	color:#23750d;
+}
+
+.message {
+	cursor: pointer;
+}
+
+.message.current, .message.current:hover {
+	background: #ddd;
+}
+.message-body{
+	text-indent: 20px;
+	margin-top: 5px;
+}

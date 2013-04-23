@@ -7,8 +7,8 @@
       <!--Sidebar content-->
     	<ul class="nav nav-tabs nav-stacked">
               <li><a href="{{URL::to_route('send_messages')}}">Create New </a></li>
-              <li><a href="#">Inbox</a></li>
-              <li><a href="#">Sent Items</a></li>         
+              <li><a href="{{URL::to_route('messages')}}">Inbox</a></li>
+              <li><a href="{{URL::to_route('sent_messages')}}">Sent Items</a></li>          
             </ul>
           
     </div>
@@ -21,15 +21,14 @@
         </div>
       @endif
 
-      {{Form::open("user/save_user_setting","POST")}}
-       {{Form::label("to", "TO:")}}
-        {{Form::text("to")}}
-        {{Form::label("user_id", "User ID")}}
-        {{Form::text("user_id",$user->id,array("disabled"))}}
-
-        {{Form::label("subject", "Subject")}}
-        {{Form::text("subject")}}
-
+      {{Form::open("user/create_message","POST")}}
+      {{Form::label("to", "TO:")}}
+      {{Form::select('to', $advisors, Input::get('to'))}}
+      {{Form::label("subject", "Subject")}}
+      {{Form::text("subject", Input::get('subject'))}}
+      {{Form::label("message", "Message")}}
+      {{Form::textarea("message")}}
+     <div>{{Form::submit('Submit');}}</div>
   
   </div>
 </div>

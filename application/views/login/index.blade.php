@@ -33,7 +33,7 @@
 	<div class="container span7">	
 		{{Form::open("login",'POST', array('class'=>'row'))}}
 			<div class="span6">
-				<h2>The Students Portal</h2>
+				<h2 id="title_fonts">The Students Portal</h2>
 				
 				@if($errors->has() || Session::has('login_errors'))
 					<div class="alert alert-error span5">

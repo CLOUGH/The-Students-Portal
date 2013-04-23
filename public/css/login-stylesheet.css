@@ -45,7 +45,11 @@ form{
     padding:0;
     margin:0;
 }
-
+#title_fonts{
+	font-family:Rage Italic;
+	color:#23750d;
+	font-size: 350%;
+}
 #slider li { list-style:none; }
 
 #page {
