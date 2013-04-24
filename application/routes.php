@@ -72,6 +72,8 @@ Route::get('user/view_setting', array('before'=>'auth', 'as'=>'view_setting', 'u
 Route::get('user/edit_setting', array('before'=>'auth', 'as'=>'edit_setting', 'uses'=>'user@edit_setting'));
 Route::get('user/messages', array('before'=>'auth', 'as'=>'messages', 'uses'=>'user@messages'));
 Route::get('user/send_messages', array('before'=>'auth', 'as'=>'send_messages', 'uses'=>'user@send_messages'));
+Route::get('user/sent_messages', array('before'=>'auth', 'as'=>'sent_messages', 'uses'=>'user@sent_messages'));
+Route::post('user/create_message', array('before'=>'auth', 'as'=>'create_message', 'uses'=>'user@create_message'));
 Route::post('user/save_user_setting', array('before'=>'auth', 'uses'=>'user@save_user_setting'));
 
 

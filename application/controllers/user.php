@@ -40,22 +40,45 @@ class User_Controller extends Base_Controller {
     public function get_messages()
     {
         return View::make('user.messages')
-            ->with('title','Search for Students')
+            ->with('title','Inbox')
             ->with('active_navigation',parent::$acitve_navigation)
             ->with('user_type', Auth::user()->type)
             ->with('user_first_name', Auth::user()->first_name)
-            ->with('user',User::with("message_head")->find(Auth::user()->id));
+            ->with('messages',MessageHead::where("to", "=", Auth::user()->id)->get());
 
     }
-    public function send_messages()
+    public function get_sent_messages(){
+          return View::make('user.sent_messages')
+            ->with('title','Sent Message')
+            ->with('active_navigation',parent::$acitve_navigation)
+            ->with('user_type', Auth::user()->type)
+            ->with('user_first_name', Auth::user()->first_name)
+            ->with('messages',MessageHead::where("user_id", "=", Auth::user()->id)->get());
+    }
+    public function get_send_messages()
     {
         return View::make('user.send_messages')
-            ->with('title','Search for Students')
+            ->with('title','New Message')
             ->with('active_navigation',parent::$acitve_navigation)
             ->with('user_type', Auth::user()->type)
             ->with('user_first_name', Auth::user()->first_name)
             ->with('user',User::find(Auth::user()->id))
+            ->with('advisors', Auth::user()->find_messageable_users())
             ->with('send_messages',User::find(Auth::user()->id));
+    }
+    public function post_create_message(){
+       
+        $message_head = MessageHead::create(array(
+            "to" => Input::get("to"),
+            "user_id"=>Auth::user()->id,
+            "subject"=>Input::get("subject")
+        ));
+        $message_body = MessageBody::create(array(
+            "user_id"=>Auth::user()->id,
+            "message_head_id"=>$message_head->id,
+            "message_body"=>Input::get("message")
+            ));
+        
     }
 
 

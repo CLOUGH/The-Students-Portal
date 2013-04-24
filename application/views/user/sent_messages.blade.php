@@ -10,7 +10,7 @@
             <ul class="nav nav-tabs nav-stacked">
             	<li><a href="{{URL::to_route('send_messages')}}">Create New </a></li>
               <li><a href="{{URL::to_route('messages')}}">Inbox</a></li>
-              <li><a href="{{URL::to_route('sent_messages')}}">Sent Items</a></li>           
+              <li><a href="{{URL::to_route('sent_messages')}}">Sent Items</a></li>         
             </ul>
           
     </div>
@@ -18,20 +18,18 @@
       <!--Body content-->
       <table class="table table-hover">
  		<tr>
- 			<th>From</th>
+ 			<th>To</th>
  			<th>Subject</th>
  			<th>Message Excerpt</th>
-      <th></th>
  		</tr>
 
     
    @foreach($messages as $message )
     
  		<tr class="message" data-message-body="{{$message->body()}}">
- 			<td class="message-user-name">{{$message->user->first_name." ".$message->user->last_name}}</td>
+ 			<td class="message-user-name">{{$message->receiver()->full_name()}}</td>
  			<td class="message-subject">{{$message->subject}}</td>
       <td>{{$message->excerpt()}}</td>
-      <td><a class="btn btn-success" href="{{URL::to_route('send_messages')}}?to={{$message->user->id}}&subject=Re:{{$message->subject}}">Reply</a></td>
  		</tr>
  	@endforeach
 	</table>

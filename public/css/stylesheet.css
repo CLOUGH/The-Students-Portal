@@ -383,7 +383,6 @@ td.register-column, th.register-column
 	font-size: 14px;
 
 }
-
 .academic_path_year
 {
 	border: 1px solid #ddd;
@@ -430,4 +429,23 @@ td.register-column, th.register-column
 	padding:10px;
 	padding-top: 40px;
 	width:90%;
+}
+#title_font{
+	font-family:Rage Italic;
+	color:#23750d;
+}
+
+.message {
+	cursor: pointer;
+}
+
+.message.current, .message.current:hover {
+	background: #ddd;
+}
+.message-body{
+	text-indent: 20px;
+	margin-top: 5px;
+}
+textarea{
+	width: 100%;
 }
