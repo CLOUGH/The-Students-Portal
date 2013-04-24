@@ -77,129 +77,60 @@ class Course_Controller extends Base_Controller
 	
 	public function post_generate_academic_path()
 	{
+		//Data variables
+		$errors = array();
+		$user = Auth::user();
+		$degree_id = Input::get("degree_name");
+		$student_id = NULL;
+		if($user->type!=2)
+			$student_id = Input::get("student_id");
+		else
+			$student_id = Student::where_user_id($user->id)->first()->id;
+
+		$academic_path_data = AcademicPath::academic_path_data($degree_id,$student_id);
+
+		//check if any errror exist and then get update the required $academic_path_raw_data from the user selected course
+		if(count($academic_path_data["errors"])==0)
+		{
+			//update $academic_path_data with the user selected academic path course
+			foreach($academic_path_data['course_list'] as $course_list)
+			{
+				
+				//check if a course has required courses after doing the checks with the students and the degree
+				if(count($course_list["required_courses"])>0)
+				{
+					$academic_path_data["required_courses"] = array(Input::get("required_courses_for_".$course_list["course_id"]));					
+				}
+			}
+		}
+		else
+			$errors =$academic_path_data["errors"];
+
+		$academic_path_courses = AcademicPath::generate_path($academic_path_data,$student_id,$degree_id);
+
+		$years = array();
+		foreach($academic_path_courses as $course)
+		{
+			$years[$course->year] = $course->year;
+		}
+
 		parent::make_active('student_advisory');
 		return View::make("course.course_academic_generation")
 			->with('title','Academic Path Generation')
 			->with('active_navigation',parent::$acitve_navigation)
-			->with('user_type', Auth::user()->type)
-			->with('user_first_name', Auth::user()->first_name);
+			->with('user_type', $user->type)
+			->with('user_first_name', $user->first_name)
+			->with('errors',$errors)
+			->with('years',$years)
+			->with('academic_path_courses',$academic_path_courses );
 	}
 	public function get_course_info($course_id)
 	{
 		return Response::json(Course::find($course_id)->to_array());
 	}
-	public function get_course_prerequisites($degree_name,$student_id)
+	public function get_course_prerequisites($degree_id,$student_id)
 	{
-		$errors = array();
-		$user = Auth::user();
-		$student= new Student;
-		$new_course_list = array();
-
-		if($user->type ==2)
-		{
-			$student = Student::with("completed_courses")->where_user_id($user->id)->first();
-			
-		}
-		else
-		{
-			$student = Student::with("completed_courses")->where_student_id($student_id)->first();
-			if(is_null($student)){
-				$errors["student_not_found"] = true;
-				return Response::json(array(
-									"course_list"=>$new_course_list,
-									"errors"=>$errors));
-			}
-		}
-
-		//Get degree courses 
-		$degree = Degree::with("degree_courses")->where_name(urldecode($degree_name))->where_degree_type_id("1")->first();
-		if(!is_null($degree)){
-			foreach($degree->degree_courses as $degree_course)
-			{
-				$is_requirement_met = false;
-				$is_passed_course = false;
-				$is_completed_course = false;
-				$required_courses = array();
-				$prerequisites = $degree_course->course->pre_requisites;
-
-				//Check if the student had already done the course and passed it
-				//i.e check if the course was done already and check if the student
-				//passed the course
-				foreach($student->completed_courses  as $completed_course)
-				{
-					//check if the student have already done the course
-					if($completed_course->course_id == $degree_course->course_id)
-					{
-						//check if the course was passed
-						if($completed_course->grade!='F')
-						{
-							$is_requirement_met=true;
-							$is_passed_course=true;
-						}
-
-						$is_completed_course = true;
-						break;
-					}
-				}
-
-				if(!$is_completed_course)
-				{
-					//if prerequisites exists for the course then do the following:
-					//check if the student have the already met the requirement for the course
-					if(!empty($prerequisites))
-					{
-
-						//For each prerequiste a course have get test if the student have already done that course
-						foreach($prerequisites as $required_course)
-						{
-							//For each completed course test if the student have match the required course code
-							foreach($student->completed_courses  as $completed_course)
-							{
-								//if the student have done that course already then stop the loop for testing anymore
-								//student completed course and set requirement mathed for the course
-								if($completed_course->course_id == $required_course->required_course_id)
-								{
-									//check if the course was passed
-									if($completed_course->grade!='F')
-									{
-										$is_requirement_met = true; 
-									}
-									break;
-								}
-							}
-							//stop the loop for testing the other prerequistes if the student met the requirement of the 
-							//course. Also clear any stored requried course since the requirement was met
-							if($is_requirement_met == true)
-							{
-								$required_courses =array();
-								break;
-							}
-							else//else continue the loop and store required coures
-								array_push($required_courses,$required_course->required_course_id);
-						}
-					}
-					else
-					{
-						$is_requirement_met =true;
-					}
-				}
-				//Add the course
-				array_push($new_course_list,array(
-					"course_id"=>$degree_course->course_id,
-					"is_requirement_met"=>$is_requirement_met,
-					"is_completed_course"=>$is_completed_course,
-					"is_passed_course"=>$is_passed_course,
-					"required_courses"=>$required_courses
-					));
-			}
-		}
-		else
-			$errors["degree_not_found"]	= true;
-
-
-		return Response::json(array(
-			"course_list"=>$new_course_list,
-			"errors"=>$errors));
+		return Response::json(AcademicPath::academic_path_data($degree_id,$student_id));
 	}	
 }
 ?>

@@ -17,12 +17,12 @@ class Degree extends Eloquent
 	public static function get_degree_names()
 	{
 		$degree_names = array();
-		$i =0;
+		
 		foreach(Degree::all() as $degree)
 		{
 			if($degree->degree_type_id==1)
 			{
-				$degree_names[$i++] = $degree->name;
+				$degree_names[$degree->id] = $degree->name;
 			}
 		}
 		return $degree_names;

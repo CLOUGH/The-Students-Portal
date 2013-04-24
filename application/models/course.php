@@ -119,7 +119,6 @@ class Course extends Eloquent{
 	{
 		return substr(base64_decode($url),0, strrpos(base64_decode($url),'~',-1) );
 	}
-	
 		
 }
 ?>
