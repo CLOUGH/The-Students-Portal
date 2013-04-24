@@ -47,6 +47,7 @@ class Add_Faculties {
 		DB::table('faculties')->where('name', '=', 'Humanities')->delete();
 		DB::table('faculties')->where('name', '=', 'Law')->delete();
 		DB::table('faculties')->where('name', '=', 'Social Sciences')->delete();
-		DB::table('faculties')->where('name', '=', 'Medical Sciences')->delete();					}
+		DB::table('faculties')->where('name', '=', 'Medical Sciences')->delete();					
+	}
 
 }
