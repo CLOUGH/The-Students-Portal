@@ -52,15 +52,8 @@
 				@endforeach
 			</div>
 			<div class="span2 home_sidebar">
-				<div class="well">
-				  <div id="datetimepicker4" class="input-append">
-				    <input data-format="yyyy-MM-dd" type="text"></input>
-				    <span class="add-on">
-				      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-				      </i>
-				    </span>
-				  </div>
-				</div>
+				<script type="text/javascript" src="http://cdn.widgetserver.com/syndication/subscriber/InsertWidget.js"></script><script type="text/javascript">if (WIDGETBOX) WIDGETBOX.renderWidget('cf3252d5-d9c9-40ea-a700-8da2efd871fd');</script>
+<noscript>Get the <a href="http://www.widgetbox.com/widget/calendar-humansapiens">Calendar</a> widget and many other <a href="http://www.widgetbox.com/">great free widgets</a> at <a href="http://www.widgetbox.com">Widgetbox</a>! Not seeing a widget? (<a href="http://support.widgetbox.com/">More info</a>)</noscript>
 				<script type="text/javascript">
 				  $(function() {
 				    $('#datetimepicker4').datetimepicker({
