@@ -110,7 +110,7 @@ class Add_Computer_Science_Courses {
 			'type'=>'theory',
 			'code'=>'COMP2140',
 			'faculty_id'=>'1',
-			'semester'=>'2',
+			'semester'=>'1',
 			'level'=>'2',
 			'credit'=>'3',
 			'description'=>'The primary goal of the course will be to introduce students to the intricacies in planning

@@ -85,7 +85,7 @@
 			<br>
 			
 			<a href="#3" class="btn back">Back</a>
-			<a href="#" class="btn next">Finish</a>
+			{{Form::submit("Finish", array("class"=>"next"))}}
 		</div>
 	</div>
 	{{Form::close()}}
@@ -99,7 +99,7 @@
 function get_prerequisites_courses()
 {
 
-	var degree_name = $('[name=degree_name]').text();
+	var degree_id = $('[name=degree_name]').val();
 	var student_id = 'null';
 	@if($user_type !=2)
 		if( $('[name=student_id]').val()!="")
@@ -107,7 +107,7 @@ function get_prerequisites_courses()
 	@endif
 	$.ajax({
 		type: "GET",
-		url: "{{URL::to_route('prerequisites')}}/"+degree_name+"/"+student_id+"/",
+		url: "{{URL::to_route('prerequisites')}}/"+degree_id+"/"+student_id+"/",
 		data: {},
 		dataType: 'json',
 		async: true,
@@ -155,7 +155,7 @@ function get_prerequisites_courses()
 								req_course_element.append(
 									"<label>"+course_info.title+"</label>");
 								req_course_element.append(
-									"<input type=radio name='required_courses_for"+value.course_id+"' value='"+course_info.id+"'>");
+									"<input type=radio name='required_courses_for_"+value.course_id+"' value='"+course_info.id+"' checked>");
 								
 								console.log(course_info);
 							}});
