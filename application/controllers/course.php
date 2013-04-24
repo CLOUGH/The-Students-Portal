@@ -83,14 +83,15 @@ class Course_Controller extends Base_Controller
 		$degree_id = Input::get("degree_name");
 		$student_id = NULL;
 		if($user->type!=2)
-			$student_id = Input::get("student_id");
+			$student_id = Student::where_student_id(Input::get("student_id"))->first()->id;
 		else
 			$student_id = Student::where_user_id($user->id)->first()->id;
 
 		$academic_path_data = AcademicPath::academic_path_data($degree_id,$student_id);
 
+
 		//check if any errror exist and then get update the required $academic_path_raw_data from the user selected course
-		if(count($academic_path_data["errors"])==0)
+		if(empty($academic_path_data["errors"]))
 		{
 			//update $academic_path_data with the user selected academic path course
 			foreach($academic_path_data['course_list'] as $course_list)
@@ -108,11 +109,14 @@ class Course_Controller extends Base_Controller
 
 		$academic_path_courses = AcademicPath::generate_path($academic_path_data,$student_id,$degree_id);
 
+
 		$years = array();
 		foreach($academic_path_courses as $course)
 		{
 			$years[$course->year] = $course->year;
 		}
+		asort($years);
+		array_pop($years);
 
 		parent::make_active('student_advisory');
 		return View::make("course.course_academic_generation")
