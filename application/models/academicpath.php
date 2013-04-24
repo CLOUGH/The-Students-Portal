@@ -64,6 +64,7 @@ class AcademicPath extends Eloquent{
 			else if($academic_path_course->is_completed_course)
 			{
 				$completed_course = CompletedCourse::where_student_id($student_id)->where_course_id($academic_path_course->course_id)->first();
+				
 				if($academic_path_course->is_passed_course)
 					$academic_path_course->year = DateTime::createFromFormat('Y-m-d',$completed_course->date_completed)->format('Y');
 				else
@@ -250,7 +251,7 @@ class AcademicPath extends Eloquent{
 		}
 		else
 		{
-			$student = Student::with("completed_courses")->where_student_id($student_id)->first();
+			$student = Student::with("completed_courses")->find($student_id);
 			if(is_null($student)){
 				$errors["student_not_found"] = true;
 				return Response::json(array(
