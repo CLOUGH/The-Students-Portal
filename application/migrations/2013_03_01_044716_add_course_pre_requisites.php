@@ -94,6 +94,20 @@ class Add_Course_Pre_Requisites {
 			'created_at'=>date('Y-m-d H:m:s'),
 			'updated_at'=>date('Y-m-d H:m:s')
 		));
+		DB::table('pre_requisites')->insert(array(
+			'course_id'=>'6',
+			'required_course_id'=>'10',
+			'linked_mandatory'=>'0',
+			'created_at'=>date('Y-m-d H:m:s'),
+			'updated_at'=>date('Y-m-d H:m:s')
+		));
+		DB::table('pre_requisites')->insert(array(
+			'course_id'=>'16',
+			'required_course_id'=>'10',
+			'linked_mandatory'=>'0',
+			'created_at'=>date('Y-m-d H:m:s'),
+			'updated_at'=>date('Y-m-d H:m:s')
+		));
 
 	}
 
