@@ -78,8 +78,11 @@ class User_Controller extends Base_Controller {
             "message_head_id"=>$message_head->id,
             "message_body"=>Input::get("message")
             ));
+        return Redirect::to(URL::to_route('messages'));
         
     }
+
+
 
 
 }

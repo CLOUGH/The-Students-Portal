@@ -12,7 +12,7 @@
 		<th>Semester</th>
 		<th>Level</th>
 		<th>View Schedule</th>
-		<th></th>
+		
 	</tr>
 	@foreach($student->courses()->get() as $course)
 		<tr>
@@ -23,7 +23,7 @@
 			<td>{{$course->semester}}</td>
 			<td>{{$course->level}}</td>
 			<td><a href="#" class="toggle_course_scehdule" id="{{$course->id}}"><i class="icon-chevron-down"></i></a></td>
-			<td>{{HTML::link("#", "DROP", array("onclick"=>"alert();"))}}</td>
+			
 		</tr>
 		<tr class="hidden-schedule-table" id="{{$course->id}}">
 			<td></td>
