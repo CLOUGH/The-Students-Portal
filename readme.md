@@ -45,3 +45,5 @@ System features:
 * Add Schedules
 * Edit Website configuration
 * Add Users
+* 
+Example http://student-portal.aws.af.cm/login
