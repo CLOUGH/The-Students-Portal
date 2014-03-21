@@ -1,3 +1,7 @@
+Example http://student-portal.aws.af.cm/login
+usname: cloughax
+pass: 1234
+
 The-Student-Portal
 ==================
 The student portal is a web based application that is an iterated version of the Online Student Advisory
@@ -46,4 +50,4 @@ System features:
 * Edit Website configuration
 * Add Users
 * 
-Example http://student-portal.aws.af.cm/login
+
